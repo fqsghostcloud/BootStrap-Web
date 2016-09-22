@@ -1,1 +1,1 @@
-from . import views
+from apps.views.common import views
