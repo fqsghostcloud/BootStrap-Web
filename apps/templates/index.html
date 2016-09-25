@@ -17,15 +17,7 @@
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">首页</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li class="active">
-							 <a href="#">Link</a>
-						</li>
-						<li>
-							 <a href="#">Link</a>
-						</li>
 
-					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" />
@@ -33,27 +25,67 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							  <a href="{{ url_for('login') }}">登录</a>
+							  <a id="logfrom" href="#modal-container-1" role="button" class="btn" data-toggle="modal">登录</a>
+                            <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="logInFrom" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                            <h4 class="modal-title" id="logInFrom">
+                                                欢迎登录
+                                            </h4>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="row clearfix">
+
+                                                    <div class="col-md-12 column">
+                                                        <from class="form-horizontal" role="form">
+                                                            <div class="form-group">
+                                                                <label for="inputUserName" class="col-sm-2 control-label">用户名:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" id="inputUserName" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputPassword" class="col-sm-2 control-label">密码:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" class="form-control" id="inputPassword" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+                                                                    <div class="checkbox">
+                                                                        <label><input type="checkbox"  />记住我</label>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+                                                                    <button type="submit" class="btn btn-default">登录</button>
+                                                                </div>
+                                                            </div>
+                                                        </from>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
 						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-							</ul>
-						</li>
+                        <li>
+                            <a href="#">注册</a>
+                        </li>
+
 					</ul>
 				</div>
 			</nav>
