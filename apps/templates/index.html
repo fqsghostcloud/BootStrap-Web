@@ -5,8 +5,8 @@
     <title>My-BootStrap-Web</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- BootStrap -->
-    <link href="..\static\bootstrap-3.3.7-dist\css\bootstrap.min.css" rel="stylesheet">
-    <!--link href="{{ url_for('static', filename='bootstrap-3.3.7-dist\css\bootstrap.min.css') }}" -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
 </head>
 <body>
 <div class="container">
@@ -64,7 +64,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                                    <button type="submit" class="btn btn-default">登录</button>
+                                                                    <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
                                                                 </div>
                                                             </div>
                                                         </from>
@@ -83,13 +83,99 @@
                             </div>
 						</li>
                         <li>
-                            <a href="#">注册</a>
+                            <a id="regform" href="#modal-container-2" role="button" class="btn" data-toggle="modal">注册</a>
+                            <div class="modal fade" id="modal-container-2" role="dialog" aria-labelledby="regForm" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                            <h4 class="modal-title" id="regForm">
+                                                欢迎注册
+
+                                            </h4>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="row clearfix">
+                                                    <div class="col-md-12 column">
+                                                        <form class="form-horizontal" role="form">
+                                                            <div class="form-group">
+                                                                <label for="inputUserName" class="col-sm-2 control-label">用户名:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" id="inputUserName" />
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="inputPassword" class="col-sm-2 control-label">密码:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="password" class="form-control" id="inputPassword">
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="realName" class="col-sm-2 control-label">真实姓名:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" id="realName">
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="userEmail" class="col-sm-2 control-label">邮箱地址:</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="email" class="form-control" id="userEmail">
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="userSex" class="col-sm-2 control-label">性别:</label>
+                                                                <div class="col-sm-10">
+                                                                    <div class="btn-group" data-toggle="buttons-radio">
+                                                                        <button type="button" class="btn btn-primary">男</button>
+                                                                        <button type="button" class="btn btn-primary">女</button>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="col-sm-offset-2 col-sm-10">
+                                                                    <button type="button" class="btn btn-primary btn-block btn-lg">提交</button>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </form>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </li>
 
 					</ul>
 				</div>
 			</nav>
-			<div class="carousel slide" id="carousel-317387">
+			<div class="carousel slide" id="carousel-317387" data-ride="carouse">
 				<ol class="carousel-indicators">
 					<li data-slide-to="0" data-target="#carousel-317387">
 					</li>
@@ -100,75 +186,137 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item">
-						<img alt="" src="http://ww2.sinaimg.cn/large/0069qWFHjw1f6kyyofzynj30s20ciahh.jpg" />
-						<div class="carousel-caption">
-							<h4>
-								First Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
+						<img width="100%" alt="" src="http://ww2.sinaimg.cn/large/0069qWFHjw1f6kyyofzynj30s20ciahh.jpg" />
+
 					</div>
 					<div class="item active">
-						<img alt="" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f6ionb5jjuj30s20ci79a.jpg" />
-						<div class="carousel-caption">
-							<h4>
-								Second Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
+						<img width="100%" alt="" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f6ionb5jjuj30s20ci79a.jpg" />
+
 					</div>
 					<div class="item">
-						<img alt="" src="http://ww1.sinaimg.cn/large/0069qWFHgw1f7fk3hcpx5j30s20citbo.jpg" />
-						<div class="carousel-caption">
-							<h4>
-								Third Thumbnail label
-							</h4>
-							<p>
-								Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-							</p>
-						</div>
+						<img width="100%" alt="" src="http://ww1.sinaimg.cn/large/0069qWFHgw1f7fk3hcpx5j30s20citbo.jpg" />
+
 					</div>
 				</div> <a class="left carousel-control" href="#carousel-317387" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-317387" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+
 			</div>
 			<div class="row clearfix">
-				<div class="col-md-12 column">
-					<p class="lead text-left text-info">
-						  <strong>热门电影</strong>
-					</p>
-					<div class="row clearfix">
-						<div class="col-md-6 column">
-							<div class="row clearfix">
-								<div class="col-md-4 column">
-									<img alt="140x140" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg" />
-								</div>
-								<div class="col-md-4 column">
-									<img alt="140x140" src="http://ww3.sinaimg.cn/large/0069qWFHjw1f4kimpdnz6j30bt0gogp9.jpg" />
-								</div>
-								<div class="col-md-4 column">
-									<img alt="140x140" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f6n84fhsy4j30by0go0wu.jpg" />
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 column">
-							<div class="row clearfix">
-								<div class="col-md-4 column">
-									<img alt="140x140" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f61j0fmqtlj30bw0gotbk.jpg" />
-								</div>
-								<div class="col-md-4 column">
-									<img alt="140x140" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f76y3f76pfj30bn0gowhu.jpg" />
-								</div>
-								<div class="col-md-4 column">
-									<img alt="140x140" src="http://ww2.sinaimg.cn/large/0069qWFHgw1f7s781a6klj30bs0gotcr.jpg" />
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                <div class="col-md-12 column">
+                    <p class="lead text-left text-info">
+                        <strong>热门电影</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+               <div class="tab-content">
+                   <div class="tab-pane active">
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                           <div class="movie-item">
+                               <a href="#">
+                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                               </a>
+                           </div>
+
+                       </div>
+                   </div>
+                   <div class="tab-pane">
+
+
+                   </div>
+               </div>
+
+
+            </div>
+
 		</div>
 	</div>
 </div>
@@ -176,12 +324,12 @@
 
 
 <!-- jQuery -->
-<script src="..\static\plugins\jQuery\jQuery-1.11.3.min.js"></script>
-<!--<script src="{{ url_for('static', filename='plugins\jQuery\jQuery-1.11.3.min.js') }}"></script>-->
+<!--<script src="..\static\plugins\jQuery\jQuery-1.11.3.min.js"></script>-->
+<<script src="{{ url_for('static', filename='plugins/jQuery/jQuery-1.11.3.min.js') }}"></script>
 
 <!--BootStrap-Js -->
-<script src="..\static\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
-<!--<script src="{{ url_for('static', filename='bootstrap-3.3.7-dist\js\bootstrap.min.js') }}"></script>-->
+<!--<script src="..\static\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>-->
+<script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 
 
 </body>
