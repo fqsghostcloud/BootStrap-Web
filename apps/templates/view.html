@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My-BootStrap-Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+        <div class="col-md-12">
+            <h1 class="text-danger">你好呀</h1>
+        </div>
+	</div>
+</div>
+
+
+
+<!-- jQuery -->
+<!--<script src="..\static\plugins\jQuery\jQuery-1.11.3.min.js"></script>-->
+<script src="{{ url_for('static', filename='plugins/jQuery/jQuery-1.11.3.min.js') }}"></script>
+
+<!--BootStrap-Js -->
+<!--<script src="..\static\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>-->
+<script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+
+
+</body>
+</html>

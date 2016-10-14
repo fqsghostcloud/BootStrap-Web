@@ -14,7 +14,7 @@
 		<div class="col-md-12 column">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">首页</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/index">首页</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
@@ -41,30 +41,31 @@
                                                 <div class="row clearfix">
 
                                                     <div class="col-md-12 column">
-                                                        <from class="form-horizontal" role="form">
+                                                        <from action="{{ url_for('index') }}" class="form-horizontal" role="form" method="POST">
+                                                            {{ form.hidden_tag() }}
                                                             <div class="form-group">
                                                                 <label for="inputUserName" class="col-sm-2 control-label">用户名:</label>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" class="form-control" id="inputUserName" />
+                                                                <div class="col-sm-10 ">
+                                                                    {{ form.username(size=60) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="inputPassword" class="col-sm-2 control-label">密码:</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="password" class="form-control" id="inputPassword" />
+                                                                    {{ form.password(size=60) }}
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="col-sm-offset-2 col-sm-10">
                                                                     <div class="checkbox">
-                                                                        <label><input type="checkbox"  />记住我</label>
+                                                                        <label>{{ form.remember_me }}记住我</label>
                                                                     </div>
 
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <div class="col-sm-offset-2 col-sm-10">
-                                                                    <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
+                                                                <div class="col-sm-12">
+                                                                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="登录">
                                                                 </div>
                                                             </div>
                                                         </from>
