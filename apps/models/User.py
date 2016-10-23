@@ -1,12 +1,17 @@
 # coding=utf-8
 import traceback  # 可能是追踪错误
+from . import db
 from flask import current_app
 from flask.ext.login import UserMixin, LoginManager  # 不懂
+# from apps.views.common.views import session 导入报错
+
+
 ''' from werkzeug.security import generate_password_hash, check_password_hash  ***密码hash加密***'''
-from . import db
 
 
 login_manager = LoginManager()
+
+
 
 
 class User(db.Model, UserMixin):
@@ -49,13 +54,18 @@ def get_by_username(username):
 def get_count():
     return User.query.count()
 
+def check_password(password):
+    if User.query.filter(User.password == password).first() is not None:
+        return True
+
+
 '''create user function'''
 def create_user(user_form):
     try:
         has_user = get_by_username(user_form.username.data)
         if has_user:
             current_app.logger.warning(u'该用户 %s 已经存在', has_user.username)
-            return 'REPRAT'
+            return 'REPRAT!'
         user = User(user_form.username.data)
         user.password = user_form.password.data
         user.realname = user_form.realname.data
@@ -69,5 +79,4 @@ def create_user(user_form):
         current_app.logger.error(u'添加 %s 用户失败', user_form.username.data)
         current_app.logger.error(traceback.format_exc())
         return 'FAIL'
-
 

@@ -1,6 +1,6 @@
 # coding = utf8
 from flask import Flask
-from config import databaseconfig
+from apps.config import databaseconfig
 from apps.models import User
 from apps.models import db
 
@@ -15,5 +15,5 @@ if __name__ == "__main__":
         db.create_all()
         user = User.User(u'admin')
         user.password = 'admin'
-        user.id = '5269'
+        user.id = '5266'
         user.save()

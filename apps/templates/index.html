@@ -10,22 +10,22 @@
 </head>
 <body>
 <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/index">首页</a>
-				</div>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/index">首页</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">搜索</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							  <a id="logfrom" href="#modal-container-1" role="button" class="btn" data-toggle="modal">登录</a>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div> <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a id="logfrom" href="#modal-container-1" role="button" class="btn" data-toggle="modal">登录</a>
                             <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="logInFrom" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -41,7 +41,7 @@
                                                 <div class="row clearfix">
 
                                                     <div class="col-md-12 column">
-                                                        <from action="{{ url_for('index') }}" class="form-horizontal" role="form" method="POST">
+                                                        <form action="{{ url_for('index') }}" class="form-horizontal" role="form" method="post">
                                                             {{ form.hidden_tag() }}
                                                             <div class="form-group">
                                                                 <label for="inputUserName" class="col-sm-2 control-label">用户名:</label>
@@ -68,7 +68,20 @@
                                                                     <input type="submit" class="btn btn-lg btn-primary btn-block" value="登录">
                                                                 </div>
                                                             </div>
-                                                        </from>
+                                                            {% block div %}
+                                                                {% with messages = get_flashed_messages() %}
+                                                                    {% if messages %}
+                                                                        <ul class=flashes>
+                                                                            {% for message in messages %}
+                                                                                <li style="list-style: none">{{ message }}</li>
+                                                                            {% endfor %}
+                                                                        </ul>
+
+                                                                    {% endif %}
+
+                                                                {% endwith %}
+                                                            {% endblock div %}
+                                                        </form>
                                                     </div>
 
                                                 </div>
@@ -82,7 +95,7 @@
 
                                 </div>
                             </div>
-						</li>
+                        </li>
                         <li>
                             <a id="regform" href="#modal-container-2" role="button" class="btn" data-toggle="modal">注册</a>
                             <div class="modal fade" id="modal-container-2" role="dialog" aria-labelledby="regForm" aria-hidden="true">
@@ -173,35 +186,35 @@
                             </div>
                         </li>
 
-					</ul>
-				</div>
-			</nav>
-			<div class="carousel slide" id="carousel-317387" data-ride="carouse">
-				<ol class="carousel-indicators">
-					<li data-slide-to="0" data-target="#carousel-317387">
-					</li>
-					<li data-slide-to="1" data-target="#carousel-317387" class="active">
-					</li>
-					<li data-slide-to="2" data-target="#carousel-317387">
-					</li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="item">
-						<img width="100%" alt="" src="http://ww2.sinaimg.cn/large/0069qWFHjw1f6kyyofzynj30s20ciahh.jpg" />
+                    </ul>
+                </div>
+            </nav>
+            <div class="carousel slide" id="carousel-317387" data-ride="carouse">
+                <ol class="carousel-indicators">
+                    <li data-slide-to="0" data-target="#carousel-317387">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-317387" class="active">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-317387">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item">
+                        <img width="100%" alt="" src="http://ww2.sinaimg.cn/large/0069qWFHjw1f6kyyofzynj30s20ciahh.jpg" />
 
-					</div>
-					<div class="item active">
-						<img width="100%" alt="" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f6ionb5jjuj30s20ci79a.jpg" />
+                    </div>
+                    <div class="item active">
+                        <img width="100%" alt="" src="http://ww3.sinaimg.cn/large/0069qWFHgw1f6ionb5jjuj30s20ci79a.jpg" />
 
-					</div>
-					<div class="item">
-						<img width="100%" alt="" src="http://ww1.sinaimg.cn/large/0069qWFHgw1f7fk3hcpx5j30s20citbo.jpg" />
+                    </div>
+                    <div class="item">
+                        <img width="100%" alt="" src="http://ww1.sinaimg.cn/large/0069qWFHgw1f7fk3hcpx5j30s20citbo.jpg" />
 
-					</div>
-				</div> <a class="left carousel-control" href="#carousel-317387" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-317387" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                </div> <a class="left carousel-control" href="#carousel-317387" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-317387" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 
-			</div>
-			<div class="row clearfix">
+            </div>
+            <div class="row clearfix">
                 <div class="col-md-12 column">
                     <p class="lead text-left text-info">
                         <strong>热门电影</strong>
@@ -210,116 +223,116 @@
             </div>
 
             <div class="row clearfix">
-               <div class="tab-content">
-                   <div class="tab-pane active">
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                <div class="tab-content">
+                    <div class="tab-pane active">
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                       <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                           <div class="movie-item">
-                               <a href="#">
-                                   <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
-                               </a>
-                           </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#">
+                                    <img class="indexhot" src="http://i4.buimg.com/0e2f5f85b3d6c73bs.jpg">
+                                </a>
+                            </div>
 
-                       </div>
-                   </div>
-                   <div class="tab-pane">
+                        </div>
+                    </div>
+                    <div class="tab-pane">
 
 
-                   </div>
-               </div>
+                    </div>
+                </div>
 
 
             </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 
