@@ -65,12 +65,11 @@ def create_user(user_form):
         has_user = get_by_username(user_form.username.data)
         if has_user:
             current_app.logger.warning(u'该用户 %s 已经存在', has_user.username)
-            return 'REPRAT!'
+            return 'REPRAT'
         user = User(user_form.username.data)
         user.password = user_form.password.data
         user.realname = user_form.realname.data
-        user.id = user_form.id.data
-        user.email = user_form.email.data
+        user.email = user_form.e_mail.data
         user.sex = user_form.sex.data
         user.save()
         current_app.logger.info(u'添加 %s 用户成功', user.username)

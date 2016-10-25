@@ -2,53 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>欢迎登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BootStrap -->
+    <!-- BootStrap-->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
 </head>
 <body>
-<div class="container-fluid" >
+<div class="container">
     <div class="row clearfix">
-
         <div class="col-md-12 column">
-            <form action="{{ url_for('login') }}" class="form-horizontal" role="form" method="post">
-                {{ form.hidden_tag() }}
-                <div class="form-group">
+            <form role="form" class="form-horizontal" method="post">
+                <div class="form-group ">
                     {{ form.username.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-3 ">
+                    <div class="col-sm-3">
                         {{ form.username(class="form-control") }}
                     </div>
+
                 </div>
+
                 <div class="form-group">
                     {{ form.password.label(class="control-label col-sm-2") }}
                     <div class="col-sm-3">
                         {{ form.password(class="form-control") }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label>{{ form.remember_me }}记住我</label>
                         </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.realname.label(class="control-label col-sm-2") }}
+                    <div class="col-sm-3">
+                        {{ form.realname(class="form-control") }}
 
                     </div>
                 </div>
+
+                <div class="form-group">
+                    {{ form.e_mail.label(class="control-label col-sm-2") }}
+                    <div class="col-sm-3">
+                        {{ form.e_mail(class="form-control") }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.sex.label(class="control-label col-sm-2") }}
+                    <div class="radio-inline col-sm-3">
+                        {{ form.sex }}
+                    </div>
+
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2">
-                        <input type="submit" class="btn  btn-primary" value="登录">
+                        <input type="submit" class="btn btn-primary" value="提交">
                     </div>
                 </div>
+
             </form>
         </div>
-
     </div>
-
 </div>
 
-<!--JQuery-->
+
+
+
+
+
+
+
+<!--jQuery-->
 <script src="{{ url_for('static', filename='plugins/jQuery/jQuery-1.11.3.min.js') }}"></script>
+
 <!--BootStrap JS-->
 <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 </body>
