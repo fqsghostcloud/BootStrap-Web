@@ -26,7 +26,7 @@ def login():
         else:
             login_user(user, remember=form.remember_me.data)
             return redirect('/view')
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, title=u'欢迎登录')
 
 
 
@@ -38,13 +38,13 @@ def register():
         info = User.create_user(form)
         if info == 'OK':
             flash(u'您注册成功!')
-            redirect('/view')
+            return redirect('/login')
         elif info == 'REPRAT':
             flash(u'您注册的用户名已经存在!')
         elif info == 'FAIL':
             flash(u'您注册失败!')
 
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, title=u'欢迎注册')
 
 
 

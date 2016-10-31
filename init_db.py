@@ -15,5 +15,5 @@ if __name__ == "__main__":
         db.create_all()
         user = User.User(u'admin')
         user.password = 'admin'
-        user.id = '5266'
+        user.id = '52695269'
         user.save()

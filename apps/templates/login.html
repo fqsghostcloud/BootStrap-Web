@@ -1,29 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>欢迎登录</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BootStrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
-</head>
-<body>
-<div class="container-fluid" >
-    <div class="row clearfix">
+{% extends "base.html" %}
 
-        <div class="col-md-12 column">
-            <form action="{{ url_for('login') }}" class="form-horizontal" role="form" method="post">
+{% block head %}
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="row clearfix">
+        <div class="text-center">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <h2>{{ message }}</h2>
+                    {% endfor %}
+                {% else %}
+                    <h1>欢迎您登录</h1>
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div class="card col-md-7 col-center-block" >
+            <!--用户登录头像显示-->
+            <!--<div class="circle-mask">
+                <canvas id="canvas" class="circle" width="96" height="96"></canvas>
+            </div>-->
+            <form action="{{ url_for('login') }}" class="form-horizontal form-panel" role="form" method="post">
                 {{ form.hidden_tag() }}
                 <div class="form-group">
                     {{ form.username.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-3 ">
+                    <div class="col-sm-5 ">
                         {{ form.username(class="form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
                     {{ form.password.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                         {{ form.password(class="form-control") }}
                     </div>
                 </div>
@@ -42,14 +51,8 @@
                 </div>
             </form>
         </div>
-
     </div>
+    <!--footer-space填充块-->
+    <div class="footer-space"></div>
 
-</div>
-
-<!--JQuery-->
-<script src="{{ url_for('static', filename='plugins/jQuery/jQuery-1.11.3.min.js') }}"></script>
-<!--BootStrap JS-->
-<script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
-</body>
-</html>
+{% endblock %}

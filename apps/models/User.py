@@ -15,7 +15,7 @@ login_manager = LoginManager()
 
 
 class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    id = db.Column(db.String(50), primary_key=True, nullable=False)
     username = db.Column(db.Unicode(128), nullable=False, unique=True, index=True)
     realname = db.Column(db.Unicode(128))
     password = db.Column(db.String(50), nullable=False)
@@ -43,7 +43,7 @@ class User(db.Model, UserMixin):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return User.query.get(str(user_id))
 
 def get_by_id(id):
     return User.query.filter(User.id == id).first()
@@ -71,6 +71,7 @@ def create_user(user_form):
         user.realname = user_form.realname.data
         user.email = user_form.e_mail.data
         user.sex = user_form.sex.data
+        user.id = create_user_id();
         user.save()
         current_app.logger.info(u'添加 %s 用户成功', user.username)
         return 'OK'
@@ -78,4 +79,15 @@ def create_user(user_form):
         current_app.logger.error(u'添加 %s 用户失败', user_form.username.data)
         current_app.logger.error(traceback.format_exc())
         return 'FAIL'
+
+
+def create_user_id():
+    import time;
+    localtime = time.localtime(time.time());
+    sum  = 5;
+    string = '';
+    for a in range(sum):
+        index =  sum - a;
+        string = string+str(localtime[index]);
+    return  string;
 

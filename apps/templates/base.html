@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--BootStrap-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <!--MyCss-->
+    <link rel="stylesheet" href="{{ url_for('static',filename='mystyle/css/base.css') }}">
+    {% block head %}{% endblock %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>My-BootStrap-Web</title>
+    {% endif %}
+
+</head>
+<body style="background-color: #f2f2f2">
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column ">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">首页</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div> <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a id="logfrom" href="/login" role="button" class="btn" data-toggle="modal">登录</a>
+
+                        </li>
+                        <li>
+                            <a id="regform" href="/register" role="button" class="btn" data-toggle="modal">注册</a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+
+            {%- block content -%}{%- endblock -%}
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>免责声明：本网站所有内容都是靠程序在互联网上自动搜集而来，仅供测试和学习交流。<br>目前正在逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。</p>
+    <p>若侵犯了您的权益，请即时发邮件通知本人，邮箱：1178996513@qq.com 万分感谢！</p>
+</footer>
+
+
+
+
+
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jQuery/jQuery-1.11.3.min.js') }}"></script>
+
+<!--BootStrap-Js -->
+<script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
