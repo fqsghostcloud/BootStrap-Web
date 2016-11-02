@@ -118,3 +118,62 @@
 .footer-space-2 {
     height: 135px;
 }
+
+.movie-title {
+    word-wrap: break-word;
+    margin: 0 0 15px;
+    font-size: 24px;
+}
+.movie-year {
+    display: inline-block;
+    color: #888;
+}
+
+.img-thumbnail {
+    padding: 1px;
+
+}
+
+.info-label {
+    color: #777;
+    font-weight: bold;
+}
+
+.span2 {
+    vertical-align: middle !important;
+    width: 80px;
+}
+
+.movie-type {
+    display: inline-block;
+    padding: 0px 5px;
+    border-radius: 2px;
+    color: #888;
+    font-size: 12px;
+    background-color: #D8D8D8;
+    margin-right: 5px;
+}
+
+.table {
+    font-size: 12px;
+}
+
+.score {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2px;
+    color: green;
+    width: 40px;
+    background: #DFDFDF;
+}
+
+.list-head {
+    background: #f5f5f5;
+}
+
+em {
+    font-size: 12px;
+    font-style: normal;
+    color: #8c8c8c;
+}

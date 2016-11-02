@@ -1,32 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My-BootStrap-Web</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BootStrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
-</head>
-<body>
-<div class="container">
-	<div class="row clearfix">
-        <div class="col-md-12">
-            <h1 class="text-danger">你好呀</h1>
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='mystyle/css/mycss.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="background: #FFF; height: 1500px; width: auto; padding-top: 15px; margin-top: 50px">
+        <ul class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="#">电影</a></li>
+            <li><a class="active">这部电影</a></li>
+        </ul>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="movie-title">这部电影<span class="movie-year">(2016)</span></h1>
+
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#" title="这部电影" target="_blank" style="display: block;position: relative" class="img-thumbnail">
+                            <img src="http://ww3.sinaimg.cn/large/0069qWFHgw1f8ade8vo0oj30bm0gojv4.jpg" alt="图片链接失效" width="100%">
+                        </a>
+                        <buttun class="btn btn-block btn-success">立即播放</buttun>
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <tbody>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">主演</span>
+                                </td>
+                                <td>
+                                    <a href="#">XXXX</a>
+                                    <a href="#">XXXX</a>
+                                    <a href="#">XXXX</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">类型</span>
+                                </td>
+                                <td>
+                                    <a href="#" class="movie-type">动作</a>
+                                    <a href="#" class="movie-type">爱情</a>
+                                    <a href="#" class="movie-type">偶像</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">制片国家</span>
+                                </td>
+                                <td>美国</td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">语言</span>
+                                </td>
+                                <td>
+                                    <a href="#">英语</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">上映时间</span>
+                                </td>
+                                <td>2016-09-02(中国大陆) / 2016-07-22(美国)</td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">片长</span>
+                                </td>
+                                <td>122分钟(中国大陆/美国)分钟</td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">又名</span>
+                                </td>
+                                <td>星际迷航13：超越 / 星际旅行13：超越太空 / 星空奇遇记13：超域时空(港) / 星际争霸战13：浩瀚无垠(台) / 星舰奇航记13 / 星舰迷航记13</td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">评分</span>
+                                </td>
+                                <td>豆瓣:
+                                    <a href="#" class="score">7.6</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="span2">
+                                    <span class="info-label">imdb</span>
+                                </td>
+                                <td>fhsadjf15313</td>
+                            </tr>
+                            <tr></tr>
+                            </tbody>
+                        </table>
+                        <p style="color: #777"><strong>剧情介绍:</strong></p>
+                        <p>柯克船长（克里斯·派恩 Chris Pine 饰）和企业号的船员们来到了银河系中未知的一个区域，开始完成他们5年的任务——探索新世界，寻找新物种。却在途中滞留异星，遭遇了当地种族追杀，他们必须找到方法离开这个星球。</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="list-group">
+                    <p class="list-group-item list-head">热门电影</p>
+                    <a href="#" target="_blank" title="xxx" class="list-group-item">xxx
+                        <em>7.6分</em>
+                    </a>
+                </div>
+            </div>
         </div>
-	</div>
-</div>
-
-
-
-<!-- jQuery -->
-<!--<script src="..\static\plugins\jQuery\jQuery-1.11.3.min.js"></script>-->
-<script src="{{ url_for('static', filename='plugins/jQuery/jQuery-1.11.3.min.js') }}"></script>
-
-<!--BootStrap-Js -->
-<!--<script src="..\static\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>-->
-<script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
-
-
-</body>
-</html>
+    </div>
+{% endblock %}
