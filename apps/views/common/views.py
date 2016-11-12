@@ -48,6 +48,20 @@ def register():
 
 
 
+@app.route('/download/<path:filename>')
+
+def download(filename):
+    from flask import send_from_directory
+    import os.path
+
+
+
+    dirpath = os.path.join(app.root_path, 'upload')
+    return send_from_directory(dirpath, filename, as_attachment=True)
+
+
+
+
 
 
 

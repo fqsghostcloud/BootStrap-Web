@@ -1,4 +1,4 @@
-# coding = utf8
+# coding=utf8
 from flask import Flask
 from apps.config import databaseconfig
 from apps.models import User
@@ -17,3 +17,4 @@ if __name__ == "__main__":
         user.password = 'admin'
         user.id = '52695269'
         user.save()
+        print 'init db success!'

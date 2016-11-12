@@ -1,5 +1,5 @@
 # coding=utf-8
-import traceback  # 可能是追踪错误
+import traceback
 from . import db
 from flask import current_app
 from flask.ext.login import UserMixin, LoginManager  # 不懂
@@ -10,6 +10,8 @@ from flask.ext.login import UserMixin, LoginManager  # 不懂
 
 
 login_manager = LoginManager()
+
+a = 520
 
 
 
@@ -71,7 +73,7 @@ def create_user(user_form):
         user.realname = user_form.realname.data
         user.email = user_form.e_mail.data
         user.sex = user_form.sex.data
-        user.id = create_user_id();
+        user.id = create_user_id()
         user.save()
         current_app.logger.info(u'添加 %s 用户成功', user.username)
         return 'OK'
@@ -82,12 +84,12 @@ def create_user(user_form):
 
 
 def create_user_id():
-    import time;
-    localtime = time.localtime(time.time());
-    sum  = 5;
-    string = '';
-    for a in range(sum):
-        index =  sum - a;
-        string = string+str(localtime[index]);
-    return  string;
+    import time
+    localtime = time.localtime(time.time())
+    count = 5
+    string = ''
+    for a in range(count):
+        index = count - a
+        string = string + str(localtime[index])
+    return string
 
