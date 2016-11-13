@@ -3,14 +3,15 @@ from apps import app
 from flask import render_template, url_for, redirect, request, flash, current_app
 from flask.ext.login import login_user, login_required, current_user
 from .forms import LoginForm, RegisterForm
-from apps.models import User
+from apps.models import User, SpiderData
 
 
 @app.route('/')
 @app.route('/index', methods='GET')
 def index():
+    movie_data = SpiderData.get_moviedata()
 
-    return render_template('index.html')
+    return render_template('index.html', list_data=movie_data)
 
 
 @app.route('/login', methods=['GET', 'POST'])

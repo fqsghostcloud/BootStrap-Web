@@ -40,7 +40,7 @@ class SpiderHtml(object):
                         with app.app_context():
                             for elem in elems:
                                 elemtsdata = {'title': '', 'img_url': '', 'movie_url': '' }
-                                elemtsdata['title'] = elem.contents[1].contents[1]['title'].encode('gbk')
+                                elemtsdata['title'] = elem.contents[1].contents[1]['title']
                                 elemtsdata['img_url'] = elem.contents[1].contents[1]['src']
                                 elemtsdata['movie_url'] = ''
                                 SpiderData.add_spiderdata(elemtsdata)

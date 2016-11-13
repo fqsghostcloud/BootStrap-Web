@@ -40,153 +40,33 @@
     <div class="row clearfix">
         <div class="tab-content">
             <div class="tab-pane active">
-                <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="太阳" target="_blank">
-                            <img class="indexhot" src="http://ww2.sinaimg.cn/large/0069qWFHgw1f8oo7qnp9pj30bs0go78p.jpg" alt="链接失效">
-                        </a>
-                        <div class="meta">
-                            <div style="width:100%;overflow:hidden;height:20px;">
-                                <a target="_blank" title="太阳百度网盘在线观看" class="movie-name" href="#">太阳</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="机械师2:复活" target="_blank">
-                            <img src="http://2img.mgtv.com/preview/internettv/sp_images/ott/2016/dianying/99994301/20160811103153043-new.jpg" alt="链接失效" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width:100%;overflow: hidden;height: 20px">
-                                <a href="#" title="机械师2:复活在线观看" target="_blank" class="movie-name">机械师2:复活</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" title="大鱼海棠" style="position: relative;display: block" target="_blank">
-                            <img src="http://ww3.sinaimg.cn/large/0069qWFHgw1f322aar4ljj30b40go41n.jpg" alt="链接丢失" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width: 100%;overflow: hidden;height: 20px">
-                                <a href="#" class="movie-name" target="_blank" title="大鱼海棠在线观看">大鱼海棠</a>
-                            </div>
-                        </div>
-                    </div>
+            {#                 {% set list_data = [['大话西游3', 'http://ww4.sinaimg.cn/large/0069qWFHgw1f7xy20yfblj30bw0go0xn.jpg'],
+                ['使徒行者', 'http://ww3.sinaimg.cn/large/0069qWFHgw1f76xw6ughvj30bu0goq6o.jpg']] %} #}
+                {% for lists in list_data %}
 
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" target="_blank" title="星际迷航3:超越星辰">
-                            <img src="http://ww3.sinaimg.cn/large/0069qWFHgw1f8ade8vo0oj30bm0gojv4.jpg" alt="链接失效" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width: 100%;overflow: hidden;height: 20px">
-                                <a href="#  " title="星际迷航3在线观看" class="movie-name" target="_blank">星际迷航3</a>
+                    <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="#" style="position: relative;display: block" title= {{ lists[0] }} target="_blank">
+                                    <img class="indexhot" src= {{ lists[1] }} alt="链接失效">
+                                </a>
+                                <div class="meta">
+                                    <div style="width:100%;overflow:hidden;height:20px;">
+                                        <a target="_blank" title="百度网盘在线观看" class="movie-name" href="#">{{ lists[0] }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="反贪风暴2" target="_blank">
-                            <img src="http://ww4.sinaimg.cn/large/0069qWFHgw1f960q8kn8yj30bo0gon0f.jpg" alt="链接丢失" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width: 100%;overflow: hidden;height: 20px">
-                                <a href="#" class="movie-name" title="反贪风暴2" target="_blank">反贪风暴2</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="太阳" target="_blank">
-                            <img class="indexhot" src="http://ww2.sinaimg.cn/large/0069qWFHgw1f8oo7qnp9pj30bs0go78p.jpg" alt="链接失效">
-                        </a>
-                        <div class="meta">
-                            <div style="width:100%;overflow:hidden;height:20px;">
-                                <a target="_blank" title="太阳百度网盘在线观看" class="movie-name" href="#">太阳</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--测试-->
-                <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="太阳" target="_blank">
-                            <img class="indexhot" src="http://ww2.sinaimg.cn/large/0069qWFHgw1f8oo7qnp9pj30bs0go78p.jpg" alt="链接失效">
-                        </a>
-                        <div class="meta">
-                            <div style="width:100%;overflow:hidden;height:20px;">
-                                <a target="_blank" title="太阳百度网盘在线观看" class="movie-name" href="#">太阳</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="机械师2:复活" target="_blank">
-                            <img src="http://2img.mgtv.com/preview/internettv/sp_images/ott/2016/dianying/99994301/20160811103153043-new.jpg" alt="链接失效" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width:100%;overflow: hidden;height: 20px">
-                                <a href="#" title="机械师2:复活在线观看" target="_blank" class="movie-name">机械师2:复活</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" title="大鱼海棠" style="position: relative;display: block" target="_blank">
-                            <img src="http://ww3.sinaimg.cn/large/0069qWFHgw1f322aar4ljj30b40go41n.jpg" alt="链接丢失" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width: 100%;overflow: hidden;height: 20px">
-                                <a href="#" class="movie-name" target="_blank" title="大鱼海棠在线观看">大鱼海棠</a>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" target="_blank" title="星际迷航3:超越星辰">
-                            <img src="http://ww3.sinaimg.cn/large/0069qWFHgw1f8ade8vo0oj30bm0gojv4.jpg" alt="链接失效" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width: 100%;overflow: hidden;height: 20px">
-                                <a href="#  " title="星际迷航3在线观看" class="movie-name" target="_blank">星际迷航3</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 modal-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="反贪风暴2" target="_blank">
-                            <img src="http://ww4.sinaimg.cn/large/0069qWFHgw1f960q8kn8yj30bo0gon0f.jpg" alt="链接丢失" class="indexhot">
-                        </a>
-                        <div class="meta">
-                            <div style="width: 100%;overflow: hidden;height: 20px">
-                                <a href="#" class="movie-name" title="反贪风暴2" target="_blank">反贪风暴2</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
-                    <div class="movie-item">
-                        <a href="#" style="position: relative;display: block" title="太阳" target="_blank">
-                            <img class="indexhot" src="http://ww2.sinaimg.cn/large/0069qWFHgw1f8oo7qnp9pj30bs0go78p.jpg" alt="链接失效">
-                        </a>
-                        <div class="meta">
-                            <div style="width:100%;overflow:hidden;height:20px;">
-                                <a target="_blank" title="太阳百度网盘在线观看" class="movie-name" href="#">太阳</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+
+
+
+
+
+
+
+
+
             </div>
             <div class="tab-pane">
 
