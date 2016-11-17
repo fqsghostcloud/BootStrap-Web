@@ -6,9 +6,28 @@ from . import db
 
 class SpiderHtml(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    title = db.Column(db.Unicode(128), nullable=False, unique=True, index=True)
-    movie_url = db.Column(db.String(128), nullable=False)
-    img_url = db.Column(db.String(128), nullable=False)
+    title = db.Column(db.Unicode(128), index=True)
+    img_url = db.Column(db.String(128))
+    year = db.Column(db.Integer)
+    performer = db.Column(db.String(64))
+    type = db.Column(db.String(32))
+    state = db.Column(db.String(32))
+    languege = db.Column(db.String(32))
+    time_length = db.Column(db.String(32))
+    another_name = db.Column(db.String(32))
+    score = db.Column(db.Float)
+    imdb = db.Column(db.String(64))
+    summary = db.Column(db.Text)
+    screenshot_url = db.Column(db.String(128))
+    play_url = db.Column(db.String(128))
+    play_url2 = db.Column(db.String(128))
+    pan_url = db.Column(db.String(128))
+    pan_url2 = db.Column(db.String(128))
+    bt_url = db.Column(db.String(128))
+    bt_url2 = db.Column(db.String(128))
+    movie_comment = db.Column(db.Text)
+
+
 
 
     def __init__(self, title):
@@ -17,6 +36,7 @@ class SpiderHtml(db.Model):
 
     def __repr__(self):
         return 'The SpiderDatabbase info is %s' % (self.title)
+
 
     def save(self):
         db.session.add(self)
@@ -28,7 +48,8 @@ class SpiderHtml(db.Model):
 
 
 def get_by_title(title):
-    return SpiderHtml.query.filter(SpiderHtml.title == title).first()
+    if SpiderHtml.query.filter(SpiderHtml.title == title).first():
+        return True
 
 def get_count():
     return SpiderHtml.query.count()
@@ -38,23 +59,26 @@ def get_by_id(id):
 
 
 
-# add movie_info by Spider
-def add_spiderdata(elemtsdata):
+# add movie_info by Spider to database
+def add_spiderdata(moviedata):
     try:
-        has_data = get_by_title(elemtsdata['title'])
+        has_data = get_by_title(moviedata['title'])
         if has_data:
             return 'The data :%s is existence!' % has_data
         else:
-            spiderhtml = SpiderHtml(elemtsdata['title'])
-            spiderhtml.img_url = elemtsdata['img_url']
-            spiderhtml.movie_url = elemtsdata['movie_url']
+            spiderhtml = SpiderHtml(moviedata['title'])
+            spiderhtml.img_url = moviedata['img_url']
+            spiderhtml.year = moviedata['year']
             spiderhtml.save()
-            return 'add Html-Info Sucess!'
+            print 'add Html-Info Sucess!'
 
     except Exception as Error:
         print 'The DB_Error is : %s' % Error
 
-# get movie_info by list
+
+
+
+ # get movie_info by list to html
 def get_moviedata():
     count = 13
     movie_info = []
