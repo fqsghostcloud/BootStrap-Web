@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4de70f5c-3e74-47e6-b3d3-2a53079c44c7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/models/SpiderData.py" afterPath="$PROJECT_DIR$/apps/models/SpiderData.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/base.html" afterPath="$PROJECT_DIR$/apps/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/index.html" afterPath="$PROJECT_DIR$/apps/templates/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/webspider/webspider.py" afterPath="$PROJECT_DIR$/apps/webspider/webspider.py" />
     </list>
     <ignored path="BootStrap-Web.iws" />
@@ -25,39 +26,7 @@
     <favorites_list name="BootStrap-Web" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="webspider.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/webspider/webspider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5841035">
-              <caret line="218" column="42" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
-              <folding>
-                <element signature="e#784#938#0" expanded="false" />
-                <element signature="e#1026#1151#0" expanded="false" />
-                <element signature="e#1229#1919#0" expanded="false" />
-                <element signature="e#2026#2621#0" expanded="false" />
-                <element signature="e#2671#3217#0" expanded="false" />
-                <element signature="e#3290#5816#0" expanded="false" />
-                <element signature="e#5883#6233#0" expanded="false" />
-                <element signature="e#8061#9334#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpiderData.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/models/SpiderData.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-              <folding>
-                <element signature="e#15#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -86,7 +55,6 @@
         <option value="$PROJECT_DIR$/apps/init_db.py" />
         <option value="$PROJECT_DIR$/apps/templates/show_message.html" />
         <option value="$PROJECT_DIR$/apps/static/mystyle/css/base.css" />
-        <option value="$PROJECT_DIR$/apps/templates/base.html" />
         <option value="$PROJECT_DIR$/apps/templates/login.html" />
         <option value="$PROJECT_DIR$/apps/templates/register.html" />
         <option value="$PROJECT_DIR$/apps/templates/123.html" />
@@ -98,8 +66,6 @@
         <option value="E:/spider-code/model.py" />
         <option value="E:/spider-code/model1.py" />
         <option value="$PROJECT_DIR$/apps/webspider/elements.html" />
-        <option value="$PROJECT_DIR$/apps/webspider/1.html" />
-        <option value="$PROJECT_DIR$/BootStrap-Web.py" />
         <option value="$PROJECT_DIR$/apps/init_spiderdb.py" />
         <option value="$PROJECT_DIR$/init_spiderdb.py" />
         <option value="$PROJECT_DIR$/apps/views/common/__init__.py" />
@@ -111,14 +77,20 @@
         <option value="$PROJECT_DIR$/apps/__init__.py" />
         <option value="$PROJECT_DIR$/apps/models/User.py" />
         <option value="C:/1Python/test.py" />
-        <option value="$PROJECT_DIR$/apps/webspider/test.py" />
         <option value="$PROJECT_DIR$/apps/webspider/text.txt" />
-        <option value="$PROJECT_DIR$/apps/templates/index.html" />
         <option value="$PROJECT_DIR$/apps/views/common/views.py" />
         <option value="$PROJECT_DIR$/init_db.py" />
         <option value="$PROJECT_DIR$/apps/1.py" />
         <option value="$PROJECT_DIR$/apps/webspider/init_SpiderDB.py" />
         <option value="$PROJECT_DIR$/apps/models/SpiderData.py" />
+        <option value="$PROJECT_DIR$/apps/webspider/test.html" />
+        <option value="$PROJECT_DIR$/apps/templates/index.html" />
+        <option value="$PROJECT_DIR$/BootStrap-Web.py" />
+        <option value="$PROJECT_DIR$/apps/templates/base.html" />
+        <option value="$PROJECT_DIR$/apps/templates/f.html" />
+        <option value="$PROJECT_DIR$/apps/webspider/1.html" />
+        <option value="E:/pyv8-win64/PyV8.py" />
+        <option value="$PROJECT_DIR$/apps/webspider/test.py" />
         <option value="$PROJECT_DIR$/apps/webspider/webspider.py" />
       </list>
     </option>
@@ -191,61 +163,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BootStrap-Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BootStrap-Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webspider" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BootStrap-Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BootStrap-Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BootStrap-Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BootStrap-Web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
+      </pane>
+      <pane id="Scratches">
+        <subPane />
       </pane>
       <pane id="Scope">
         <subPane subId="Problems" />
@@ -274,15 +195,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/pyv8-win64/PyV8.py" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="213" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="239" />
@@ -303,14 +221,14 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\BootStrap-code\BootStrap-Web\apps\upload" />
+      <recent name="D:\BootStrap-code\BootStrap-Web\apps\static\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\BootStrap-code\BootStrap-Web\apps\static\mystyle" />
       <recent name="D:\BootStrap-code\BootStrap-Web" />
       <recent name="D:\BootStrap-code\BootStrap-Web\apps\views\common" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\BootStrap-code\BootStrap-Web\apps\upload" />
-      <recent name="D:\BootStrap-code\BootStrap-Web\apps\static\images" />
     </key>
   </component>
   <component name="RunManager" selected="Python.BootStrap-Web">
@@ -552,17 +470,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15117522" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35576922" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3627232" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2767857" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -613,20 +531,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/init_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="84" selection-start-line="6" selection-start-column="84" selection-end-line="6" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/models/SpiderData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/views/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -831,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.733686">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://E:/spider-code/model1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3390558">
@@ -866,24 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BootStrap-Web.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31847134">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/webspider/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/views/common/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8650519">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -901,38 +784,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66020674">
-          <caret line="52" column="89" selection-start-line="52" selection-start-column="89" selection-end-line="52" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08137045">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/init_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/webspider/init_SpiderDB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5813953">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/models/User.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4857595">
-          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -945,28 +800,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/models/SpiderData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.046554934">
           <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-          <folding>
-            <element signature="e#15#31#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-32.35294">
+          <caret line="44" column="44" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BootStrap-Web.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.352941">
+          <caret line="67" column="95" selection-start-line="67" selection-start-column="95" selection-end-line="67" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/static/plugins/jQuery/jQuery-1.11.3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/webspider/init_SpiderDB.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/init_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13071896">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/views/common/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/models/User.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4836602">
+          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/webspider/webspider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5841035">
-          <caret line="218" column="42" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
-          <folding>
-            <element signature="e#784#938#0" expanded="false" />
-            <element signature="e#1026#1151#0" expanded="false" />
-            <element signature="e#1229#1919#0" expanded="false" />
-            <element signature="e#2026#2621#0" expanded="false" />
-            <element signature="e#2671#3217#0" expanded="false" />
-            <element signature="e#3290#5816#0" expanded="false" />
-            <element signature="e#5883#6233#0" expanded="false" />
-            <element signature="e#8061#9334#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.6763754">
+          <caret line="327" column="40" selection-start-line="327" selection-start-column="40" selection-end-line="327" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/webspider/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12135922">
+          <caret line="3" column="568" selection-start-line="3" selection-start-column="568" selection-end-line="3" selection-end-column="568" />
+          <folding />
         </state>
       </provider>
     </entry>

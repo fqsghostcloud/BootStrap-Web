@@ -68,6 +68,29 @@ class SpiderHtml(object):
             print 'Get url %s --------is Faild! The faild reason is: %s' % (self.url, HtmlError)
 
 
+
+    # get other html comments return response
+    def get_other_html(self, url):
+
+        try:
+            res = requests.get(url)
+            res.raise_for_status() # trigger Error
+            if res.status_code == requests.codes.ok:
+                print '****************************'
+                print 'The url %s ---response is OK!' % url
+                print '****************************'
+                return res # html contents
+            else:
+                print 'response Number is Not 200!'
+                return None
+        except Exception as HtmlError:
+            print 'xxxxxxxxxxxxxxxxxxx--Get-Urls-ERROR--xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            print 'Get url %s --------is Faild! The faild reason is: %s' % (url, HtmlError)
+
+
+
+
+
     # get movie_item form html return movie item list
     def get_movie_item(self, contents_response):
         movie_item_list = []
@@ -85,6 +108,40 @@ class SpiderHtml(object):
             except Exception as Error:
                 print 'get movie item error: %s' % Error
         return movie_item_list
+
+
+    def get_movie_info(self, movie_item_tag):
+        moviedata = {}
+        if movie_item_tag:
+            # get elemt of movie_item_tag list
+            for elemt in movie_item_tag:
+                moviedata['title'] = elemt.contents[1].contents[1]['title']
+                moviedata['img_url'] = elemt.contents[1]. contents[1]['src']
+                moviedata['movie_url'] = elemt.contents[1]['href']
+
+            # from movie_url get other movie info
+                url = 'http://www.renren66.com' + moviedata['movie_url']
+                get_movie_info = SpiderHtml(url)
+                try:
+                    res = get_movie_info.get_html()
+                    if res:
+                        for chunk in res.iter_content(100000):
+                            moviedata['year'] = get_movie_info.get_movie_year(chunk)
+                            # get movie tbody info
+                            get_movie_info.get_tbody_info(chunk)
+
+                        with app.app_context():
+                            SpiderData.add_spiderdata(moviedata)
+
+
+
+                    else:
+                        print 'response of get movie other info is None!'
+                except Exception as Error:
+                    print 'get movie other info Error:%s' % Error
+
+        else:
+            print 'movie_item is None'
 
 
 
@@ -200,76 +257,37 @@ class SpiderHtml(object):
             print 'get screenshot Error:%s' % Error
 
     # get movie paly ulrs
-    def get_play_urls(self, chunk):
+    def get__previous_play_urls(self, request):
         previous_url_list = []
+        for chunk in request.iter_content(100000):
+            try:
+                soup = BeautifulSoup(chunk, 'lxml')
+                previous_url_class = soup.find_all("li",class_='list-group-item')
+                previous_url_tag = previous_url_class[0]
+                previous_url_list.append(self.index_url + previous_url_tag.contents[0]['href'])
+                previous_url_list.append(self.index_url + previous_url_tag.contents[1]['href'])
+                return previous_url_list
+
+            except Exception as Error:
+                print 'get movie play urls Error: %s' % Error
+
+
+
+
+
+
+
+
+    def get_play_url(self, request):
         try:
-            soup = BeautifulSoup(chunk, 'lxml')
-            previous_url_class = soup.find_all("li",class_='list-group-item')
-            previous_url_tag = previous_url_class[0]
-            previous_url_list.append(self.index_url + previous_url_tag.contents[0]['href'])
-            previous_url_list.append(self.index_url + previous_url_tag.contents[1]['href'])
-            # play page ********************
-            for url in previous_url_list:
-                play_page = SpiderHtml(url)
-                res_contents = play_page.get_html()
-                for chunk2 in res_contents.iter_content(100000):
-                    try:
-                        soup2 = BeautifulSoup(chunk2, 'lxml')
-                        player_class = soup2.find_all(id='player')
-                        print player_class
-
-
-
-
-
-                    except Exception as Error2:
-                        print 'get iframe url Error: %s' % Error2
-
-
-
-
-
-
-
+            for chunk in request.iter_content(100000):
+                soup = BeautifulSoup(chunk, 'lxml')
+                div_tag = soup.find_all(class_='container-fluid')[0]
+                for script in div_tag.contents[3].contents[1].stripped_strings:
+                    print script
 
         except Exception as Error:
-            print 'get movie play urls Error: %s' % Error
-
-
-
-
-    def get_movie_info(self, movie_item_tag):
-        moviedata = {}
-        if movie_item_tag:
-            # get elemt of movie_item_tag list
-            for elemt in movie_item_tag:
-                moviedata['title'] = elemt.contents[1].contents[1]['title']
-                moviedata['img_url'] = elemt.contents[1]. contents[1]['src']
-                moviedata['movie_url'] = elemt.contents[1]['href']
-
-            # from movie_url get other movie info
-                url = 'http://www.renren66.com' + moviedata['movie_url']
-                get_movie_info = SpiderHtml(url)
-                try:
-                    res = get_movie_info.get_html()
-                    if res:
-                        for chunk in res.iter_content(100000):
-                            moviedata['year'] = get_movie_info.get_movie_year(chunk)
-                            # get movie tbody info
-                            get_movie_info.get_tbody_info(chunk)
-
-                        '''with app.app_context():
-                            SpiderData.add_spiderdata(moviedata)'''
-
-
-
-                    else:
-                        print 'response of get movie other info is None!'
-                except Exception as Error:
-                    print 'get movie other info Error:%s' % Error
-
-        else:
-            print 'movie_item is None'
+            print 'get play url Error:%s' % Error
 
 
 
@@ -294,9 +312,19 @@ class SpiderHtml(object):
 
 
 
-start_HtmlSpider = SpiderHtml('http://www.renren66.com/movie/id_1661.html')
-res = start_HtmlSpider.get_html() # res is content of HTML
-#movie_item_list = start_HtmlSpider.get_movie_item(res)
-#start_HtmlSpider.get_movie_info(movie_item_list)
-for chunk in res.iter_content(1000000):
-    start_HtmlSpider.get_play_urls(chunk)
+'''start_HtmlSpider = SpiderHtml('http://www.renren66.com/movie/id_1661.html')
+res = start_HtmlSpider.get_html()
+
+
+
+previous_url_list = start_HtmlSpider.get__previous_play_urls(res)
+# get fast play url
+res2 = start_HtmlSpider.get_other_html(previous_url_list[0])
+start_HtmlSpider.get_play_url(res2)'''
+
+start = SpiderHtml(urls)
+res = start.get_html()
+movie_tag_list_item = start.get_movie_item(res)
+start.get_movie_info(movie_tag_list_item)
+
+
