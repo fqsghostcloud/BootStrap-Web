@@ -11,9 +11,10 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from apps.models import SpiderData, db
 from apps import config
+import re
 
 
-
+size = 100000
 app = Flask(__name__)
 app.config.from_object(config.databaseconfig['videodata'])
 db.init_app(app)
@@ -37,6 +38,15 @@ class SpiderHtml(object):
                 new_list.append(content)
 
         return new_list
+
+    # get movie play url from script
+    def script_to_url(self, strings):
+
+        reg_strings = '(?<=\|id\|).+(?=\|com\|)'
+        play_url = 'http://www.renren66.com/ckplayer/ckplayer.php?id='
+        searchobj = re.search(reg_strings, strings, re.M|re.I)
+        id = searchobj.group()
+        return play_url + id
 
     # get tr info convert to string type
     def get_tr_string(self, tr_tag):
@@ -84,18 +94,18 @@ class SpiderHtml(object):
                 print 'response Number is Not 200!'
                 return None
         except Exception as HtmlError:
-            print 'xxxxxxxxxxxxxxxxxxx--Get-Urls-ERROR--xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+            print 'xxxxxxxxxxxxxxxxxxx--Get-Your-Input-Urls-ERROR--xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
             print 'Get url %s --------is Faild! The faild reason is: %s' % (url, HtmlError)
 
 
 
 
 
-    # get movie_item form html return movie item list
+    # get movie_item_tag form html return movie item list type(Tag)
     def get_movie_item(self, contents_response):
         movie_item_list = []
 
-        for chunk in contents_response.iter_content(100000):
+        for chunk in contents_response.iter_content(size):
             try:
                 soup = BeautifulSoup(chunk, 'lxml')
                 if soup:
@@ -112,33 +122,53 @@ class SpiderHtml(object):
 
     def get_movie_info(self, movie_item_tag):
         moviedata = {}
+        play_url_list = []
         if movie_item_tag:
-            # get elemt of movie_item_tag list
-            for elemt in movie_item_tag:
-                moviedata['title'] = elemt.contents[1].contents[1]['title']
-                moviedata['img_url'] = elemt.contents[1]. contents[1]['src']
-                moviedata['movie_url'] = elemt.contents[1]['href']
+            moviedata['title'] = movie_item_tag.contents[1].contents[1]['title']
+            moviedata['img_url'] = movie_item_tag.contents[1]. contents[1]['src']
+            moviedata['movie_url'] = movie_item_tag.contents[1]['href']
 
-            # from movie_url get other movie info
-                url = 'http://www.renren66.com' + moviedata['movie_url']
-                get_movie_info = SpiderHtml(url)
-                try:
-                    res = get_movie_info.get_html()
-                    if res:
-                        for chunk in res.iter_content(100000):
-                            moviedata['year'] = get_movie_info.get_movie_year(chunk)
+            # from movie_url to get detail movie info
+
+            url = 'http://www.renren66.com' + moviedata['movie_url']
+            get_detail_info = SpiderHtml(url)
+            try:
+                res = get_detail_info.get_html()
+                if res:
+                    # get fast play url
+                    previous_play_list = get_detail_info.get__previous_play_urls(res)
+                    if previous_play_list:
+                        for previous_play in previous_play_list:
+                            play_page_res = self.get_other_html(previous_play)
+                            play_url = self.get_play_url(play_page_res)
+                            play_url_list.append(play_url)
+
+                        moviedata['play_url'] = play_url_list
+
+                        for chunk in res.iter_content(size):
+                            # get movie year
+                            moviedata['year'] = get_detail_info.get_movie_year(chunk)
+
                             # get movie tbody info
-                            get_movie_info.get_tbody_info(chunk)
+                            moviedata['tbody_info_dic'] = get_detail_info.get_tbody_info(chunk)
 
-                        with app.app_context():
-                            SpiderData.add_spiderdata(moviedata)
+                            # get movie summery
+                            moviedata['summary'] = get_detail_info.get_summary_info(chunk)
+
+                            # get movie sreenshot url
+                            moviedata['screenshot_url'] = get_detail_info.get_screenshot(chunk)
 
 
-
+                        return moviedata
                     else:
-                        print 'response of get movie other info is None!'
-                except Exception as Error:
-                    print 'get movie other info Error:%s' % Error
+                        print u'该电影不支持播放!'
+
+                else:
+                    print 'response of get movie other info is None!'
+            except Exception as Error:
+                print 'get movie detail info Error:%s' % Error
+
+
 
         else:
             print 'movie_item is None'
@@ -176,49 +206,49 @@ class SpiderHtml(object):
             # get movie perfor data
             for tr_tag in tbody_tag:
                 if tr_tag.contents[1].string == u'主演':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['performer'] = self.get_tr_string(tr_tag)
-                    print moviedata['performer']
+                    #print moviedata['performer']
 
                 elif tr_tag.contents[1].string == u'类型':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['type'] = self.get_tr_string(tr_tag)
-                    print moviedata['type']
+                    #print moviedata['type']
 
                 elif tr_tag.contents[1].string == u'制片国家':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['state'] = self.get_tr_string(tr_tag)
-                    print moviedata['state']
+                    #print moviedata['state']
 
                 elif tr_tag.contents[1].string == u'语言':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['language'] = self.get_tr_string(tr_tag)
-                    print moviedata['language']
+                    #print moviedata['language']
 
                 elif tr_tag.contents[1].string == u'上映时间':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['release_time'] = self.get_tr_string(tr_tag)
-                    print moviedata['release_time']
+                    #print moviedata['release_time']
 
                 elif tr_tag.contents[1].string == u'片长':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['time_length'] = self.get_tr_string(tr_tag)
-                    print moviedata['time_length']
+                    #print moviedata['time_length']
 
                 elif tr_tag.contents[1].string == u'又名':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['another_name'] = self.get_tr_string(tr_tag)
-                    print moviedata['another_name']
+                    #print moviedata['another_name']
 
                 elif tr_tag.contents[1].string == u'评分':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['score'] = tr_tag.contents[3].contents[1].contents[0]
-                    print moviedata['score']
+                    #print moviedata['score']
 
                 elif tr_tag.contents[1].string == u'imdb':
-                    print tr_tag.contents[1].string
+                    #print tr_tag.contents[1].string
                     moviedata['imdb'] = tr_tag.contents[2].contents[0].string
-                    print moviedata['imdb']
+                    #print moviedata['imdb']
 
             return moviedata
 
@@ -238,6 +268,7 @@ class SpiderHtml(object):
         except Exception as Error:
             print 'get movie summary Error:%s' % Error
 
+
     # get movie screenshot url
     def get_screenshot(self, chunk):
         moviedata = {}
@@ -245,12 +276,22 @@ class SpiderHtml(object):
         try:
             soup = BeautifulSoup(chunk, 'lxml')
             screenshot_class = soup.find_all("h4")
-            screenshot_previous_tag = screenshot_class[0]
-            for screenshot_tag in screenshot_previous_tag.next_siblings:
-                screenshot_urls.append(screenshot_tag['src'])
-            moviedata['screenshot'] = screenshot_urls
 
-            return moviedata # use it like moviedata['screenshot'][0]
+            screenshot_previous_tag = screenshot_class[0]
+
+            if screenshot_previous_tag.next_sibling.name == 'img':
+
+                for screenshot_tag in screenshot_previous_tag.next_siblings:
+                    screenshot_urls.append(screenshot_tag['src'])
+                    moviedata['screenshot'] = screenshot_urls
+                return moviedata # use it like moviedata['screenshot'][0]
+
+            else:
+                moviedata['screenshot'] = None
+                return moviedata
+
+
+
 
 
         except Exception as Error:
@@ -259,17 +300,20 @@ class SpiderHtml(object):
     # get movie paly ulrs
     def get__previous_play_urls(self, request):
         previous_url_list = []
-        for chunk in request.iter_content(100000):
+        for chunk in request.iter_content(size):
             try:
                 soup = BeautifulSoup(chunk, 'lxml')
                 previous_url_class = soup.find_all("li",class_='list-group-item')
-                previous_url_tag = previous_url_class[0]
-                previous_url_list.append(self.index_url + previous_url_tag.contents[0]['href'])
-                previous_url_list.append(self.index_url + previous_url_tag.contents[1]['href'])
-                return previous_url_list
+                if previous_url_class:
+                    previous_url_tag = previous_url_class[0]
+                    previous_url_list.append(self.index_url + previous_url_tag.contents[0]['href'])
+                    previous_url_list.append(self.index_url + previous_url_tag.contents[1]['href'])
+                    return previous_url_list
+                else:
+                    print u'该电影无法播放'
 
             except Exception as Error:
-                print 'get movie play urls Error: %s' % Error
+                print 'get__previous_play_urls Error: %s' % Error
 
 
 
@@ -280,11 +324,15 @@ class SpiderHtml(object):
 
     def get_play_url(self, request):
         try:
-            for chunk in request.iter_content(100000):
+            for chunk in request.iter_content(size):
                 soup = BeautifulSoup(chunk, 'lxml')
                 div_tag = soup.find_all(class_='container-fluid')[0]
+
                 for script in div_tag.contents[3].contents[1].stripped_strings:
-                    print script
+                    play_url = self.script_to_url(script)
+
+            return play_url
+
 
         except Exception as Error:
             print 'get play url Error:%s' % Error
@@ -308,23 +356,55 @@ class SpiderHtml(object):
 
 
 
+'''
+test = SpiderHtml('http://www.renren66.com/movie/id_1781.html')
+res = test.get_html()
+for chunk in res.iter_content(size):
+    test.get_screenshot(chunk)
+'''
 
 
 
-
-'''start_HtmlSpider = SpiderHtml('http://www.renren66.com/movie/id_1661.html')
-res = start_HtmlSpider.get_html()
-
-
-
-previous_url_list = start_HtmlSpider.get__previous_play_urls(res)
-# get fast play url
-res2 = start_HtmlSpider.get_other_html(previous_url_list[0])
-start_HtmlSpider.get_play_url(res2)'''
 
 start = SpiderHtml(urls)
 res = start.get_html()
-movie_tag_list_item = start.get_movie_item(res)
-start.get_movie_info(movie_tag_list_item)
+movie_tag_list = start.get_movie_item(res)
+movie_data = {}
+
+#movie_data = start.get_movie_info(movie_tag_list[4])
+
+
+
+
+for i in movie_tag_list:
+    movie_data = start.get_movie_info(i)
+    if movie_data:
+
+        print movie_data['title']
+
+        print movie_data['play_url']
+
+        #print movie_data['summary']['summary']
+
+        print movie_data['tbody_info_dic']['performer']
+        print movie_data['tbody_info_dic']['language']
+        print movie_data['tbody_info_dic']['time_length']
+        print movie_data['tbody_info_dic']['state']
+        print movie_data['tbody_info_dic']['score']
+        print movie_data['tbody_info_dic']['imdb']
+
+
+        print movie_data['year']
+
+        print movie_data['screenshot_url']['screenshot']
+
+        print movie_data['img_url']
+        print '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+    else:
+        print u'无法播放此电影！'
+
+
+
+
 
 
