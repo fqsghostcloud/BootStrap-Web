@@ -172,8 +172,29 @@
     background: #f5f5f5;
 }
 
-em {
+.em {
     font-size: 12px;
     font-style: normal;
     color: #8c8c8c;
+}
+
+.magnet-icon {
+    display: inline-block;
+    background-color: #DFDFDF;
+    color: #999;
+    padding: 0px 5px;
+    border-radius: 2px;
+    cursor: default;
+    text-decoration: none;
+}
+
+.text-break {
+    word-break: break-all;
+    word-wrap: break-word;
+    /* 控制换行 */
+}
+
+.resource-help {
+    padding: 8px 10px;
+    color: #777;
 }
