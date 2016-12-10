@@ -198,3 +198,29 @@
     padding: 8px 10px;
     color: #777;
 }
+
+.config-title {
+    background-color: #E9F4F9;
+    height: 37px;
+    padding: 0 3px 0 0;
+    line-height: 37px;
+
+}
+
+.config-content {
+    margin: 30px 15px 0px 15px;
+    border-color: #CFEBF5;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.base_info {
+    margin: 20px 20px 20px 0px;
+
+}
+
+.base_info_title {
+    width: 78px;
+    vertical-align: top;
+    line-height: 21px;
+}

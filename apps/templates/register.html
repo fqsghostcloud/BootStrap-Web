@@ -1,52 +1,19 @@
 {% extends "base.html" %}
+{% from "macro/field_render.html" import field_render %}
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static',filename='mystyle/css/mycss.css') }}">
 {% endblock %}
 
 {% block content %}
     <div class="row clearfix">
-        <div class="text-center">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <h2>{{ message }}</h2>
-                    {% endfor %}
-                {% else %}
-                    <h1>{{ title }}</h1>
-                {% endif %}
-            {% endwith %}
-        </div>
+
         <div class="card col-md-7 col-center-block-2">
             <form role="form" class="form-horizontal form-panel" method="post">
-                <div class="form-group ">
-                    {{ form.username.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-5">
-                        {{ form.username(class="form-control") }}
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    {{ form.password.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-5">
-                        {{ form.password(class="form-control") }}
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {{ form.realname.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-5">
-                        {{ form.realname(class="form-control") }}
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    {{ form.e_mail.label(class="control-label col-sm-2") }}
-                    <div class="col-sm-5">
-                        {{ form.e_mail(class="form-control") }}
-                    </div>
-                </div>
+                {{ field_render(form.username, id=username) }}
+                {{ field_render(form.password, id=password) }}
+                {{ field_render(form.password2, id=password2) }}
+                {{ field_render(form.realname, id=realname) }}
+                {{ field_render(form.e_mail, id=email) }}
 
                 <div class="form-group">
                     {{ form.sex.label(class="control-label col-sm-2") }}
@@ -58,7 +25,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2">
-                        <input type="submit" class="btn btn-primary" value="提交">
+                        {{ form.regis_submit(class="btn btn-primary") }}
                     </div>
                 </div>
 

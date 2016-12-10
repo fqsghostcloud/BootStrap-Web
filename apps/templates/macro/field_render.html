@@ -1,0 +1,12 @@
+{% macro field_render(field, id) %}
+    {% if field %}
+        <div class="form-group">
+            {{ field.label(class="control-label col-sm-2", for=id) }}
+            <div class="col-sm-5">
+                {{ field(class="form-control col-sm-5", id=id)}}
+
+            </div>
+
+        </div>
+    {% endif %}
+{% endmacro %}

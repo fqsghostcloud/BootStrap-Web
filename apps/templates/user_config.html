@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
+{% endblock head %}
+
+{% block content %}
+    <div class="container-fluid" style="background-color: #FFF; padding-top: 15px; height: 700px">
+        <div class="row">
+            <div class="panel panel-info" style="margin: 15px 15px 0px 15px; ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">信息设置</h3>
+                </div>
+                <div class="panel-body">
+                    <h1>你好 {{ username }}</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}

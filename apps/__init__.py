@@ -5,6 +5,7 @@ from apps.models import db
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'You never guss'
 
 
 def create_app(config):
