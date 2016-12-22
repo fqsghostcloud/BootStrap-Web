@@ -40,8 +40,8 @@ def register():
     if request.method == 'POST' and form.validate_on_submit():
         info = User.create_user(form)
         if info == 'OK':
-            return redirect(url_for('login'))
             flash(u'您注册成功!')
+            return redirect(url_for('login'))
         elif info == 'REPRAT':
             flash(u'您注册的用户名已经存在!')
         elif info == 'FAIL':

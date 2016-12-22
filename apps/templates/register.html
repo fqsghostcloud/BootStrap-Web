@@ -1,36 +1,34 @@
 {% extends "base.html" %}
 {% from "macro/field_render.html" import field_render %}
+{% from "macro/button_render.html" import button_render %}
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static',filename='mystyle/css/mycss.css') }}">
 {% endblock %}
 
 {% block content %}
-    <div class="row clearfix">
+    <div class="row ">
 
-        <div class="card col-md-7 col-center-block-2">
-            <form role="form" class="form-horizontal form-panel" method="post">
-                {{ field_render(form.username, id=username) }}
-                {{ field_render(form.password, id=password) }}
-                {{ field_render(form.password2, id=password2) }}
-                {{ field_render(form.realname, id=realname) }}
-                {{ field_render(form.e_mail, id=email) }}
+        <div class="col-md-6 card col-center-block-2 ">
+           <div class="container-fluid">
+                <div class="row">
+                <form role="form" class="form-horizontal form-panel" method="post">
+                    {{ field_render(form.username, username) }}
+                    {{ field_render(form.password, password) }}
+                    {{ field_render(form.password2, password2) }}
+                    {{ field_render(form.realname, realname) }}
+                    {{ field_render(form.e_mail, email) }}
 
-                <div class="form-group">
-                    {{ form.sex.label(class="control-label col-sm-2") }}
-                    <div class="radio-inline col-sm-3">
-                        {{ form.sex }}
+                    <div class="form-group">
+                        {{ form.sex.label(class="control-label col-md-2") }}
+                        <div class="radio-inline col-sm-3">
+                            {{ form.sex }}
+                        </div>
                     </div>
 
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2">
-                        {{ form.regis_submit(class="btn btn-primary") }}
-                    </div>
-                </div>
-
-            </form>
-
+                    {{ button_render(form.regis_submit) }}
+                </form>
+            </div>
+           </div>
         </div>
     </div>
     <!--footer-space填充块-->

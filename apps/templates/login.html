@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "macro/field_render.html" import field_render %}
+{% from "macro/button_render.html" import button_render %}
 
 {% block head %}
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
@@ -7,29 +8,29 @@
 
 {% block content %}
     <div class="row clearfix">
-        <div class="card col-md-7 col-center-block" >
-            <!--用户登录头像显示-->
-            <!--<div class="circle-mask">
-                <canvas id="canvas" class="circle" width="96" height="96"></canvas>
-            </div>-->
-            <form action="{{ url_for('login') }}" class="form-horizontal form-panel" role="form" method="post">
-                {{ form.hidden_tag() }}
-                {{ field_render(form.username, id=username) }}
-                {{ field_render(form.password, id=password) }}
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                            <label>{{ form.remember_me }}记住我</label>
-                        </div>
+        <div class="card col-md-6 col-center-block" >
+            <div class="container-fluid">
+                <div class="row">
+                    <!--用户登录头像显示-->
+                    <!--<div class="circle-mask">
+                        <canvas id="canvas" class="circle" width="96" height="96"></canvas>
+                    </div>-->
+                    <form action="{{ url_for('login') }}" class="form-horizontal form-panel" role="form" method="post">
+                        {{ form.hidden_tag() }}
+                        {{ field_render(form.username, id=username) }}
+                        {{ field_render(form.password, id=password) }}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>{{ form.remember_me }}记住我</label>
+                                </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        {{ button_render(form.login) }}
+                    </form>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2">
-                        {{ form.login(class="btn btn-primary") }}
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
     <!--footer-space填充块-->

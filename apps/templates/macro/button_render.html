@@ -1,0 +1,11 @@
+{% macro button_render(button)%}
+    {% if button %}
+        <div class="form-group">
+            <div class="col-md-10">
+                <div class="col-md-7" style="float: none;display: block;margin-left: auto;margin-right: auto; ">
+                    {{ button(class="btn btn-primary btn-block", style="margin-top:10px;")|safe }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}
