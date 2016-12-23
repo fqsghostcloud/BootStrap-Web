@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% from "macro/field_render.html" import field_render %}
+{% from "macro/button_render.html" import button_render %}
+
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
@@ -7,15 +10,39 @@
 {% block content %}
     <div class="container-fluid" style="background-color: #FFF; padding-top: 15px; height: 700px">
         <div class="row">
-            <div class="panel panel-info" style="margin: 15px 45px 0px 45px; ">
+            <div class="panel panel-info" style="margin: 30px 90px 0px 90px; ">
                 <div class="panel-heading">
                     <h2 class="panel-title" style="font-size: 22px;">设置</h2>
                     <p class="help-block" style="margin-bottom: 0px;">修改你的基本信息</p>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <img src="../static/images/user.jpg" alt="头像无法显示" class="img-rounded">
-                        <span class="user-name">{{ username }}</span>
+                        <img src="../static/images/user.jpg" alt="头像无法显示" class="img-rounded header-img">
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form role="form" class="form-horizontal form-panel" method="post">
+                                    {{ field_render(form.username, username) }}
+                                    {{ field_render(form.password, password) }}
+                                    {{ field_render(form.newpassword, newpassword) }}
+                                    {{ field_render(form.realname, realname) }}
+                                    {{ field_render(form.e_mail, email) }}
+
+                                    <div class="form-group">
+                                        {{ form.sex.label(class="control-label col-md-2") }}
+                                        <div class="radio-inline col-sm-3">
+                                            {{ form.sex }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ button_render(form.submit) }}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

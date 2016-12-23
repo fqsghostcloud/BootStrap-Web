@@ -3,16 +3,19 @@ from apps import app
 from datetime import datetime
 from flask import render_template, url_for, redirect, request, flash, current_app, session
 from flask.ext.login import login_user, login_required, current_user
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, UserConfigForm
 from apps.models import User, SpiderData
 
 
 @app.route('/')
 @app.route('/index', methods='GET')
 def index():
+    if current_user.is_authenticated:
+        authenticated = True
+    else:
+        authenticated = False
     movie_data = SpiderData.get_moviedata()
-
-    return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow())
+    return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow(), authenticated=authenticated)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -53,10 +56,11 @@ def register():
 
 @app.route('/user_config', methods=['GET', 'POST'])
 def user_config():
+    form = UserConfigForm(csrf_enabled=False)
     if not current_user.is_authenticated: # 是否通过验证
         return current_app.login_manager.unauthorized()
     else:
-        return render_template('user_config.html', title=u'个人信息', username=session.get('name'))
+        return render_template('user_config.html', title=u'个人信息', username=session.get('name'), form=form, authenticated=True)
 
 
 @app.errorhandler(404)
@@ -65,7 +69,11 @@ def page_not_found(e): # 错误页面显示
 
 @app.route('/view')
 def view():
-    return render_template('view.html')
+    if current_user.is_authenticated:
+        authenticated = True
+    else:
+        authenticated = False
+    return render_template('view.html', authenticated=authenticated)
 
 
 

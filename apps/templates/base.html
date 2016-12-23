@@ -36,17 +36,37 @@
                             <input type="text" class="form-control" />
                         </div> <button type="submit" class="btn btn-default">搜索</button>
                     </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a id="logfrom" href="/login" role="button" class="btn" data-toggle="modal">登录</a>
 
-                        </li>
-                        <li>
-                            <a id="regform" href="/register" role="button" class="btn" data-toggle="modal">注册</a>
+                    {% block nav_bar %}
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if authenticated %}
+                                <li>
+                                    <a href="{{ url_for('user_config') }}" style="padding-top: 4px;padding-bottom: 4px;"><img src="../static/images/user.jpg" alt="用户头像" class="img-circle nav-img"></a>
 
-                        </li>
+                                </li>
+                                <li>
+                                    <a id="regform" href="#" role="button" class="btn" data-toggle="modal">注销</a>
 
-                    </ul>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a id="logfrom" href="/login" role="button" class="btn" data-toggle="modal">登录</a>
+
+                                </li>
+                                <li>
+                                    <a id="regform" href="/register" role="button" class="btn" data-toggle="modal">注册</a>
+
+                                </li>
+                            {% endif %}
+
+
+
+
+
+
+                        </ul>
+                    {% endblock nav_bar %}
+
                 </div>
             </nav>
 
