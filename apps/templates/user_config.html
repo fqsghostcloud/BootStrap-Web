@@ -7,16 +7,20 @@
 {% block content %}
     <div class="container-fluid" style="background-color: #FFF; padding-top: 15px; height: 700px">
         <div class="row">
-            <div class="panel panel-info" style="margin: 15px 15px 0px 15px; ">
+            <div class="panel panel-info" style="margin: 15px 45px 0px 45px; ">
                 <div class="panel-heading">
-                    <h3 class="panel-title">信息设置</h3>
+                    <h2 class="panel-title" style="font-size: 22px;">设置</h2>
+                    <p class="help-block" style="margin-bottom: 0px;">修改你的基本信息</p>
                 </div>
                 <div class="panel-body">
-                    <h1>你好 {{ username }}</h1>
+                    <div class="col-md-12">
+                        <img src="../static/images/user.jpg" alt="头像无法显示" class="img-rounded">
+                        <span class="user-name">{{ username }}</span>
+                    </div>
                 </div>
             </div>
-
         </div>
+    </div>
     </div>
 
 {% endblock content %}
