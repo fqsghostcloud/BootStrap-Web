@@ -10,9 +10,10 @@ from apps.models import User, SpiderData
 @app.route('/')
 @app.route('/index', methods='GET')
 def index():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and session['logged_in'] is True:
         authenticated = True
     else:
+        session['logged_in'] = False
         authenticated = False
     movie_data = SpiderData.get_moviedata()
     return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow(), authenticated=authenticated)
@@ -31,9 +32,17 @@ def login():
         else:
             login_user(user, remember=form.remember_me.data) # 验证之前需要加入？
             session['name'] = form.username.data
+            session['logged_in'] = True
+            flash(u'您登录成功!')
             return redirect(url_for('user_config'))
     return render_template('login.html', form=form, title=u'欢迎登录')
 
+
+@app.route('/logout',methods=['GET'])
+def logout():
+    session['logged_in'] = False
+    flash(u'您已经注销!')
+    return redirect(url_for('index'))
 
 
 
@@ -57,10 +66,10 @@ def register():
 @app.route('/user_config', methods=['GET', 'POST'])
 def user_config():
     form = UserConfigForm(csrf_enabled=False)
-    if not current_user.is_authenticated: # 是否通过验证
-        return current_app.login_manager.unauthorized()
-    else:
+    if current_user.is_authenticated and session['logged_in'] is True:
         return render_template('user_config.html', title=u'个人信息', username=session.get('name'), form=form, authenticated=True)
+    else: # 是否通过验证
+        return current_app.login_manager.unauthorized()
 
 
 @app.errorhandler(404)
@@ -69,7 +78,7 @@ def page_not_found(e): # 错误页面显示
 
 @app.route('/view')
 def view():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and session['logged_in'] is True:
         authenticated = True
     else:
         authenticated = False
