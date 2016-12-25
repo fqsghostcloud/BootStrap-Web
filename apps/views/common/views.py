@@ -7,10 +7,11 @@ from .forms import LoginForm, RegisterForm, UserConfigForm
 from apps.models import User, SpiderData
 
 
+
 @app.route('/')
 @app.route('/index', methods='GET')
 def index():
-    if current_user.is_authenticated and session['logged_in'] is True:
+    if current_user.is_authenticated and session.get('logged_in') is True:
         authenticated = True
     else:
         session['logged_in'] = False
@@ -30,8 +31,8 @@ def login():
         elif password is not True:
             flash(u'您的密码错误!')
         else:
-            login_user(user, remember=form.remember_me.data) # 验证之前需要加入？
-            session['name'] = form.username.data
+            #login_user(user, remember=form.remember_me.data) # 验证之前需要加入？
+            session['username'] = request.form['username']
             session['logged_in'] = True
             flash(u'您登录成功!')
             return redirect(url_for('user_config'))
@@ -40,6 +41,7 @@ def login():
 
 @app.route('/logout',methods=['GET'])
 def logout():
+    session.pop('username', None)
     session['logged_in'] = False
     flash(u'您已经注销!')
     return redirect(url_for('index'))
@@ -66,8 +68,8 @@ def register():
 @app.route('/user_config', methods=['GET', 'POST'])
 def user_config():
     form = UserConfigForm(csrf_enabled=False)
-    if current_user.is_authenticated and session['logged_in'] is True:
-        return render_template('user_config.html', title=u'个人信息', username=session.get('name'), form=form, authenticated=True)
+    if current_user.is_authenticated and session.get('logged_in') is True:
+        return render_template('user_config.html', title=u'个人信息', username=session.get('username'), form=form, authenticated=True)
     else: # 是否通过验证
         return current_app.login_manager.unauthorized()
 
@@ -76,9 +78,11 @@ def user_config():
 def page_not_found(e): # 错误页面显示
     return render_template('404.html',title=u'页面不存在'), 404
 
+
+
 @app.route('/view')
 def view():
-    if current_user.is_authenticated and session['logged_in'] is True:
+    if current_user.is_authenticated and session.get('logged_in') is True:
         authenticated = True
     else:
         authenticated = False

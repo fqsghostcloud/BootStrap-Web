@@ -5,7 +5,7 @@
                 {{ field.label(class="col-md-2 control-label") }}
 
                 <div class="col-md-8">
-                    {{ field(class="form-control",**kwargs)|safe }}
+                    {{ field(class="form-control", **kwargs)|safe }}
                     {% for error in field.errors %}
                         <span class="help-block" style="color: red;">
                             *{{ error }}<br/>
