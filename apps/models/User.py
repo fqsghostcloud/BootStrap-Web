@@ -2,7 +2,7 @@
 import traceback
 from . import db
 from flask import current_app
-from flask.ext.login import UserMixin, LoginManager  # 不懂
+from flask.ext.login import UserMixin, LoginManager
 # from apps.views.common.views import session 导入报错
 
 
@@ -10,11 +10,6 @@ from flask.ext.login import UserMixin, LoginManager  # 不懂
 
 
 login_manager = LoginManager()
-
-a = 520
-
-
-
 
 class User(db.Model, UserMixin):
     id = db.Column(db.String(50), primary_key=True, nullable=False)
