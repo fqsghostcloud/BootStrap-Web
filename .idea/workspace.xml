@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4de70f5c-3e74-47e6-b3d3-2a53079c44c7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/views/main/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/views/main/error.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/1.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/apps/static/images/index-bg.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/apps/static/images/index-bg2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apps/views/common/__init__.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/__init__.py" afterPath="$PROJECT_DIR$/apps/__init__.py" />
@@ -13,7 +16,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/templates/login.html" afterPath="$PROJECT_DIR$/apps/templates/login.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/views/__init__.py" afterPath="$PROJECT_DIR$/apps/views/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apps/views/common/__init__.py" afterPath="$PROJECT_DIR$/apps/views/main/__init__.py" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/apps/views/common/forms.py" afterPath="$PROJECT_DIR$/apps/views/main/forms.py" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/apps/views/common/views.py" afterPath="$PROJECT_DIR$/apps/views/main/views.py" />
     </list>
@@ -561,7 +563,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17521368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
