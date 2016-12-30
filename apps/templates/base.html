@@ -41,23 +41,23 @@
                         <ul class="nav navbar-nav navbar-right">
                             {% if authenticated %}
                                 <li>
-                                    <a href="{{ url_for('user_config') }}" style="padding-top: 4px;padding-bottom: 4px;">
+                                    <a href="{{ url_for('main.user_config') }}" style="padding-top: 4px;padding-bottom: 4px;">
                                         <img src="../static/images/user.jpg" alt="用户头像" class="img-circle nav-img">
                                         <span style="padding-top: 15px;padding-bottom: 15px;">个人中心</span>
                                     </a>
 
                                 </li>
                                 <li>
-                                    <a id="regform" href="{{ url_for('logout') }}" role="button" class="btn" data-toggle="modal">注销</a>
+                                    <a id="regform" href="{{ url_for('main.logout') }}" role="button" class="btn" data-toggle="modal">注销</a>
 
                                 </li>
                             {% else %}
                                 <li>
-                                    <a id="logfrom" href="{{ url_for('login') }}" role="button" class="btn" data-toggle="modal">登录</a>
+                                    <a id="logfrom" href="{{ url_for('main.login') }}" role="button" class="btn" data-toggle="modal">登录</a>
 
                                 </li>
                                 <li>
-                                    <a id="regform" href="{{ url_for('register') }}" role="button" class="btn" data-toggle="modal">注册</a>
+                                    <a id="regform" href="{{ url_for('main.register') }}" role="button" class="btn" data-toggle="modal">注册</a>
 
                                 </li>
                             {% endif %}

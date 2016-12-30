@@ -1,5 +1,5 @@
 # coding=utf8
-from apps import app
+from . import main
 from datetime import datetime
 from flask import render_template, url_for, redirect, request, flash, current_app, session
 from flask.ext.login import login_user, login_required, current_user
@@ -8,8 +8,8 @@ from apps.models import User, SpiderData
 
 
 
-@app.route('/')
-@app.route('/index', methods='GET')
+@main.route('/')
+@main.route('/index', methods='GET')
 def index():
     if current_user.is_authenticated and session.get('logged_in') is True:
         authenticated = True
@@ -20,7 +20,7 @@ def index():
     return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow(), authenticated=authenticated)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@main.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(csrf_enabled=False)
     if request.method == 'POST' and form.validate_on_submit():
@@ -31,31 +31,31 @@ def login():
         elif password is not True:
             flash(u'您的密码错误!')
         else:
-            #login_user(user, remember=form.remember_me.data) # 验证之前需要加入？
+            login_user(user, remember=form.remember_me.data) # 验证之前需要加入？
             session['username'] = request.form['username']
             session['logged_in'] = True
             flash(u'您登录成功!')
-            return redirect(url_for('user_config'))
+            return redirect(url_for('main.user_config'))
     return render_template('login.html', form=form, title=u'欢迎登录')
 
 
-@app.route('/logout',methods=['GET'])
+@main.route('/logout',methods=['GET'])
 def logout():
     session.pop('username', None)
     session['logged_in'] = False
     flash(u'您已经注销!')
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
 
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@main.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm(csrf_enabled=False)
     if request.method == 'POST' and form.validate_on_submit():
         info = User.create_user(form)
         if info == 'OK':
             flash(u'您注册成功!')
-            return redirect(url_for('login'))
+            return redirect(url_for('main.login'))
         elif info == 'REPRAT':
             flash(u'您注册的用户名已经存在!')
         elif info == 'FAIL':
@@ -65,7 +65,7 @@ def register():
 
 
 
-@app.route('/user_config', methods=['GET', 'POST'])
+@main.route('/user_config', methods=['GET', 'POST'])
 def user_config():
     form = UserConfigForm(csrf_enabled=False)
     if current_user.is_authenticated and session.get('logged_in') is True:
@@ -74,13 +74,8 @@ def user_config():
         return current_app.login_manager.unauthorized()
 
 
-@app.errorhandler(404)
-def page_not_found(e): # 错误页面显示
-    return render_template('404.html',title=u'页面不存在'), 404
 
-
-
-@app.route('/view')
+@main.route('/view')
 def view():
     if current_user.is_authenticated and session.get('logged_in') is True:
         authenticated = True
@@ -95,7 +90,7 @@ def view():
 
 
 # test------------------------------------------------------------------------------------
-@app.route('/download/<path:filename>')
+@main.route('/download/<path:filename>')
 
 def download(filename):
     from flask import send_from_directory
@@ -103,21 +98,6 @@ def download(filename):
 
 
 
-    dirpath = os.path.join(app.root_path, 'upload')
+    dirpath = os.path.join(main.root_path, 'upload')
     return send_from_directory(dirpath, filename, as_attachment=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -3,7 +3,7 @@ import traceback
 from . import db
 from flask import current_app
 from flask.ext.login import UserMixin, LoginManager
-# from apps.views.common.views import session 导入报错
+# from apps.views.main.views import session 导入报错
 
 
 ''' from werkzeug.security import generate_password_hash, check_password_hash  ***密码hash加密***'''

@@ -15,7 +15,7 @@
                     <!--<div class="circle-mask">
                         <canvas id="canvas" class="circle" width="96" height="96"></canvas>
                     </div>-->
-                    <form action="{{ url_for('login') }}" class="form-horizontal form-panel" role="form" method="post">
+                    <form action="{{ url_for('main.login') }}" class="form-horizontal form-panel" role="form" method="post">
                         {{ form.hidden_tag() }}
                         {{ field_render(form.username, id=username) }}
                         {{ field_render(form.password, id=password) }}
