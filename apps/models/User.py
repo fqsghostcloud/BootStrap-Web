@@ -3,10 +3,7 @@ import traceback
 from . import db
 from flask import current_app
 from flask.ext.login import UserMixin, LoginManager
-# from apps.views.main.views import session 导入报错
-
-
-''' from werkzeug.security import generate_password_hash, check_password_hash  ***密码hash加密***'''
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 login_manager = LoginManager()
@@ -15,7 +12,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.String(50), primary_key=True, nullable=False)
     username = db.Column(db.Unicode(128), nullable=False, unique=True, index=True)
     realname = db.Column(db.Unicode(128))
-    password = db.Column(db.String(50), nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(50))
     sex = db.Column(db.Unicode(10))
 
@@ -25,7 +22,21 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return '<User %s>' % (self.username)
 
-    '''@property  # what it is meaning?'''
+
+
+    @property
+    def password(self):
+        raise AttributeError(u'密码不可读取!')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+
 
 
 
@@ -37,6 +48,11 @@ class User(db.Model, UserMixin):
     def remove(self):
         db.session.delete(self)
         db.session.commit()
+
+
+
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -51,9 +67,6 @@ def get_by_username(username):
 def get_count():
     return User.query.count()
 
-def check_password(password):
-    if User.query.filter(User.password == password).first() is not None:
-        return True
 
 
 '''create user function'''

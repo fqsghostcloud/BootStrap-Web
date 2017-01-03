@@ -128,6 +128,10 @@ class SpiderHtml(object):
             moviedata['img_url'] = movie_item_tag.contents[1]. contents[1]['src']
             moviedata['movie_url'] = movie_item_tag.contents[1]['href']
 
+            return moviedata
+        else:
+            print 'get movie info has error'
+            '''
             # from movie_url to get detail movie info
 
             url = 'http://www.renren66.com' + moviedata['movie_url']
@@ -172,6 +176,7 @@ class SpiderHtml(object):
 
         else:
             print 'movie_item is None'
+            '''
 
 
 
@@ -369,13 +374,35 @@ for chunk in res.iter_content(size):
 start = SpiderHtml(urls)
 res = start.get_html()
 movie_tag_list = start.get_movie_item(res)
-movie_data = {}
-
-#movie_data = start.get_movie_info(movie_tag_list[4])
-
-
+for i in movie_tag_list:
+    SpiderData.add_spiderdata(start.get_movie_info(i))
+    print 'success!'
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 for i in movie_tag_list:
     movie_data = start.get_movie_info(i)
     if movie_data:
@@ -402,6 +429,7 @@ for i in movie_tag_list:
         print '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
     else:
         print u'无法播放此电影！'
+'''
 
 
 

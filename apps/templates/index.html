@@ -44,23 +44,35 @@
             <div class="tab-pane active">
                 {#                 {% set list_data = [['大话西游3', 'http://ww4.sinaimg.cn/large/0069qWFHgw1f7xy20yfblj30bw0go0xn.jpg'],
                 ['使徒行者', 'http://ww3.sinaimg.cn/large/0069qWFHgw1f76xw6ughvj30bu0goq6o.jpg']] %} #}
-                {% for lists in list_data %}
-
+                {% if list_data %}
+                    {% for lists in list_data %}
+                        <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
+                            <div class="movie-item">
+                                <a href="{{ url_for('main.view') }}" style="position: relative;display: block" title= {{ lists[0] }} target="_blank">
+                                    <img class="indexhot" src= {{ lists[1] }} alt="链接失效">
+                                </a>
+                                <div class="meta">
+                                    <div style="width:100%;overflow:hidden;height:20px;">
+                                        <a target="_blank" title="百度网盘在线观看" class="movie-name" href="#">{{ lists[0] }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
                     <div class="col-md-2 col-sm-6 col-xs-6 movie-item-out">
                         <div class="movie-item">
-                            <a href="{{ url_for('view') }}" style="position: relative;display: block" title= {{ lists[0] }} target="_blank">
-                                <img class="indexhot" src= {{ lists[1] }} alt="链接失效">
+                            <a href="{{ url_for('main.view') }}" style="position: relative;display: block" title= "明明不喜欢" target="_blank">
+                                <img class="indexhot" src="https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2387352525.jpg" alt="链接失效">
                             </a>
                             <div class="meta">
                                 <div style="width:100%;overflow:hidden;height:20px;">
-                                    <a target="_blank" title="百度网盘在线观看" class="movie-name" href="#">{{ lists[0] }}</a>
+                                    <a target="_blank" title="百度网盘在线观看" class="movie-name" href="#">明明不喜欢</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                {% endfor %}
+                {% endif %}
 
 
             </div>

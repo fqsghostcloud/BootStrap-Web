@@ -2,7 +2,7 @@
 from . import main
 from datetime import datetime
 from flask import render_template, url_for, redirect, request, flash, current_app, session
-from flask.ext.login import login_user, login_required, current_user
+from flask.ext.login import login_user, login_required, current_user, logout_user
 from .forms import LoginForm, RegisterForm, UserConfigForm
 from apps.models import User, SpiderData
 
@@ -17,7 +17,8 @@ def index():
         session['logged_in'] = False
         authenticated = False
     movie_data = SpiderData.get_moviedata()
-    return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow(), authenticated=authenticated)
+    # return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow(), authenticated=authenticated)
+    return render_template('index.html', list_data=None, current_time=datetime.utcnow(), authenticated=authenticated)
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -25,13 +26,13 @@ def login():
     form = LoginForm(csrf_enabled=False)
     if request.method == 'POST' and form.validate_on_submit():
         user = User.get_by_username(form.username.data)
-        password = User.check_password(form.password.data)
+        password = user.verify_password(form.password.data)
         if user is None:
             flash(u'该用户名不存在!')
         elif password is not True:
             flash(u'您的密码错误!')
         else:
-            login_user(user, remember=form.remember_me.data) # 验证之前需要加入？
+            login_user(user, remember=form.remember_me.data)
             session['username'] = request.form['username']
             session['logged_in'] = True
             flash(u'您登录成功!')
@@ -43,6 +44,7 @@ def login():
 def logout():
     session.pop('username', None)
     session['logged_in'] = False
+    logout_user()
     flash(u'您已经注销!')
     return redirect(url_for('main.index'))
 

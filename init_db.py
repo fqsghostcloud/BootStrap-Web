@@ -16,6 +16,7 @@ if __name__ == "__main__":
     db.init_app(app)
 
     with app.app_context():
+
         db.drop_all()
         db.create_all()
         user = User.User(u'admin')
@@ -23,3 +24,7 @@ if __name__ == "__main__":
         user.id = '1'
         user.save()
         print 'init db success!'
+        '''
+        User.User.__table__.create(db.session.bind, checkfirst=True)
+        print 'succsess!'
+        '''
