@@ -11,7 +11,9 @@ db = SQLAlchemy(app)
 
 
 manager = Manager(app)
+
 ''' add shell command enviroment var '''
+
 def make_shell_context():
     return dict(app=app, db=db, User=User.User)
 

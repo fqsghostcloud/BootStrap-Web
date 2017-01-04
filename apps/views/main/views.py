@@ -41,6 +41,7 @@ def login():
 
 
 @main.route('/logout',methods=['GET'])
+@login_required
 def logout():
     session.pop('username', None)
     session['logged_in'] = False
@@ -68,6 +69,7 @@ def register():
 
 
 @main.route('/user_config', methods=['GET', 'POST'])
+@login_required
 def user_config():
     form = UserConfigForm(csrf_enabled=False)
     if current_user.is_authenticated and session.get('logged_in') is True:
