@@ -3,25 +3,28 @@ import traceback
 from . import db
 from flask import current_app
 from flask.ext.login import UserMixin, LoginManager
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash # generate password_hash
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
 login_manager = LoginManager()
 
+# Flask-Login 默认提供UserMixin类，实现了is_anthenticated(), is_active(), is_anonymous()等方法
 class User(db.Model, UserMixin):
-    id = db.Column(db.String(50), primary_key=True, nullable=False)
+    __tablename__ = 'users'
+    id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
     username = db.Column(db.Unicode(128), nullable=False, unique=True, index=True)
-    realname = db.Column(db.Unicode(128))
     password_hash = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(50))
     sex = db.Column(db.Unicode(10))
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    # confirmed = db.Column(db.Boolean, default=False) # confirm the account is active
 
     def __init__(self, username):
         self.username = username
 
     def __repr__(self):
         return '<User %s>' % (self.username)
-
 
 
     @property
@@ -37,9 +40,6 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password_hash, password)
 
 
-
-
-
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -49,6 +49,26 @@ class User(db.Model, UserMixin):
         db.session.delete(self)
         db.session.commit()
 
+'''
+    # 使用itsdangerous生成确认令牌
+    def generate_confirmation_token(self, expiration=3600):
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
+        return s.dump({'confirm_id': self.id})
+
+    # 验证令牌信息
+    def confirm(self, token):
+        s = Serializer(current_app.config['SECRET_KRY'])
+        try:
+            data = s.load(token)
+        except:
+            return False
+        if data.get('confirm') != self.id:
+            return False
+        self.confirmed = True
+        db.session.add(self)
+        db.session.commit()
+        return True
+'''
 
 
 
@@ -69,7 +89,7 @@ def get_count():
 
 
 
-'''create user function'''
+# register user function
 def create_user(user_form):
     try:
         has_user = get_by_username(user_form.username.data)
@@ -90,7 +110,7 @@ def create_user(user_form):
         current_app.logger.error(traceback.format_exc())
         return 'FAIL'
 
-
+# use register time to create user id
 def create_user_id():
     import time
     localtime = time.localtime(time.time())

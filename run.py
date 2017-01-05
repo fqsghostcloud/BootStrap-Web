@@ -4,7 +4,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from apps import create_app
 from apps.models import db
 from apps.models.User import login_manager
-from apps.models import User
+from apps.models import User, Role
 
 
 
@@ -16,7 +16,7 @@ manager.add_command('db', MigrateCommand)
 
 
 def make_shell_context():
-    return dict(app=app, db=db, User=User.User)
+    return dict(app=app, db=db, User=User.User, Role=Role.Role)
 
 
 if __name__ == '__main__':

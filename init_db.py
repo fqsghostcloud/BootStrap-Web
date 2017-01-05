@@ -1,7 +1,7 @@
 # coding=utf8
 from flask import Flask
 from apps.config import databaseconfig
-from apps.models import User, SpiderData
+from apps.models import User, Role
 from apps.models import db
 
 # debug database must set default encoding as utf8 when you want to read movie_title
@@ -22,6 +22,7 @@ if __name__ == "__main__":
         user = User.User(u'admin')
         user.password = 'admin'
         user.id = '1'
+        #user.confirmed = True
         user.save()
         print 'init db success!'
         '''
