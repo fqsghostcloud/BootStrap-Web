@@ -24,7 +24,7 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = '1178996513@qq.com'
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    #MAIL_PASSWORD = 'ptrwrmfoewwqhjaj'
+
 
 
 
