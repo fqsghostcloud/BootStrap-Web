@@ -8,6 +8,7 @@ from apps.models import User, SpiderData
 
 
 
+
 @main.route('/')
 @main.route('/index', methods='GET')
 def index():
@@ -104,4 +105,16 @@ def download(filename):
 
     dirpath = os.path.join(main.root_path, 'upload')
     return send_from_directory(dirpath, filename, as_attachment=True)
+
+
+@main.route('/send')
+def send_email():
+    from apps import mail, Message # must import mail after Blurprint init success!!
+    msg = Message('Hello',sender='1178996513@qq.com',recipients=['376141249@qq.com'])
+    msg.body = 'testind body'
+    msg.html = '<b>HTML</b> body'
+    mail.send(msg)
+    return '<h1>send email success!</h1>'
+
+
 

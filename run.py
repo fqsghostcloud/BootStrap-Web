@@ -11,7 +11,7 @@ from apps.models import User
 # Flask app config:
 app = create_app('videodata')
 manager = Manager(app)  # add Flask-Script
-migrate = Migrate(app, db)  # add Flask-Migrate to manage database // user python BootStrap-Web db init to create Migrate Database
+migrate = Migrate(app, db)  # add Flask-Migrate to manage database // user python run db init to create Migrate Database
 manager.add_command('db', MigrateCommand)
 
 
