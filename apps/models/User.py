@@ -5,6 +5,7 @@ from flask import current_app
 from flask.ext.login import UserMixin, LoginManager
 from werkzeug.security import generate_password_hash, check_password_hash # generate password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from .Role import Role
 
 
 login_manager = LoginManager()
@@ -98,10 +99,10 @@ def create_user(user_form):
             return 'REPRAT'
         user = User(user_form.username.data)
         user.password = user_form.password.data
-        user.realname = user_form.realname.data
         user.email = user_form.e_mail.data
         user.sex = user_form.sex.data
         user.id = create_user_id()
+        user.role_id = Role.query.filter(Role.default == True).first().id # set role to user
         user.save()
         current_app.logger.info(u'添加 %s 用户成功', user.username)
         return 'OK'
