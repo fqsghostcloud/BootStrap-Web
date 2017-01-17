@@ -5,6 +5,8 @@ from flask import render_template, url_for, redirect, request, flash, current_ap
 from flask.ext.login import login_user, login_required, current_user, logout_user
 from .forms import LoginForm, RegisterForm, UserConfigForm
 from apps.models import User, SpiderData
+from apps.views.decorators import admin_required, permission_required # 自定义修饰器
+from apps.models.Role import Permission
 
 
 
@@ -87,6 +89,13 @@ def view():
     else:
         authenticated = False
     return render_template('view.html', authenticated=authenticated)
+
+
+@main.route('/admin')
+@login_required
+@admin_required
+def admin_config():
+    return '<h1>Hello admin!</h1>'
 
 
 

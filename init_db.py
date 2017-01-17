@@ -22,7 +22,7 @@ if __name__ == "__main__":
         db.create_all()
 
         # init Role inser_roles()
-        Role.Role.insert_roles()
+        Role.Role.insert_roles() # init rloe database
 
         user = User.User(u'admin')
         user.password = 'admin'

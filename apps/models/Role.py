@@ -8,7 +8,7 @@ from flask import current_app
 class Permission:
     COMMENT = 0x01
     HELP_ADMIN = 0x02
-    ADMINISTER = 0x80
+    ADMINISTER = 0xff
 
 
 class Role(db.Model):
@@ -32,7 +32,7 @@ class Role(db.Model):
         roles = {
             'User':(Permission.COMMENT, True),
             'Moderator':(Permission.COMMENT|Permission.HELP_ADMIN, False),
-            'Administer':(0xff, False)
+            'Administer':(Permission.ADMINISTER, False)
         }
         for r in roles:
             role = Role.query.filter_by(name=r).first()

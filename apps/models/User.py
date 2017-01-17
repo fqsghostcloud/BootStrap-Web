@@ -2,11 +2,10 @@
 import traceback
 from . import db
 from flask import current_app
-from flask.ext.login import UserMixin, LoginManager
+from flask.ext.login import UserMixin, LoginManager, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash # generate password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from .Role import Role
-
+from .Role import Role, Permission
 
 login_manager = LoginManager()
 
@@ -49,6 +48,21 @@ class User(db.Model, UserMixin):
     def remove(self):
         db.session.delete(self)
         db.session.commit()
+
+
+    def get_permissions(self):
+        if self.role_id is not None:
+            return Role.query.filter(Role.id == self.role_id).first().permissions
+        else:
+            return False
+
+
+    def can(self, permissions): #return self.role_id is not None and (self.role_id.permissions & permissions) == permissions
+        return (self.get_permissions() & permissions) == permissions
+
+    def is_administer(self):
+        return self.can(Permission.ADMINISTER)
+
 
 '''
     # 使用itsdangerous生成确认令牌
@@ -121,4 +135,14 @@ def create_user_id():
         index = count - a
         string = string + str(localtime[index])
     return string
+
+# if user not login
+class AnonymousUser(AnonymousUserMixin):
+    def can(self, permissions):
+        return False
+
+    def is_administer(self):
+        return False
+
+login_manager.anonymous_user = AnonymousUser
 
