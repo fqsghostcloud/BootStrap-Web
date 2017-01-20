@@ -11,6 +11,22 @@ from apps.models.Role import Permission
 
 
 
+@main.before_app_request
+def before_app_request():
+    if current_user.is_authenticated:
+        current_user.ping()
+        '''
+        if not current_user.confirmed \
+        and request.endpoint[:5] != 'main'
+        return redirect(url_for('main.unconfirmed'))
+        '''
+
+
+
+
+
+
+
 @main.route('/')
 @main.route('/index', methods='GET')
 def index():

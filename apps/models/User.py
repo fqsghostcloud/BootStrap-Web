@@ -1,5 +1,6 @@
 # coding=utf-8
 import traceback
+from datetime import datetime
 from . import db
 from flask import current_app
 from flask.ext.login import UserMixin, LoginManager, AnonymousUserMixin
@@ -18,6 +19,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50))
     sex = db.Column(db.Unicode(10))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    member_since = db.Column(db.DateTime, default=datetime.utcnow)
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     # confirmed = db.Column(db.Boolean, default=False) # confirm the account is active
 
     def __init__(self, username):
@@ -62,6 +65,10 @@ class User(db.Model, UserMixin):
 
     def is_administer(self):
         return self.can(Permission.ADMINISTER)
+
+    def ping(self): # get laste_seen time
+        self.last_seen = datetime.utcnow()
+        db.session.add(self)
 
 
 '''
