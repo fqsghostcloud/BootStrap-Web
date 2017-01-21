@@ -120,7 +120,7 @@ def create_user(user_form):
             return 'REPRAT'
         user = User(user_form.username.data)
         user.password = user_form.password.data
-        user.email = user_form.e_mail.data
+        user.email = user_form.email.data
         user.sex = user_form.sex.data
         user.id = create_user_id()
         user.role_id = Role.query.filter(Role.default == True).first().id # set role to user
@@ -143,6 +143,25 @@ def create_user_id():
         string = string + str(localtime[index])
     return string
 
+
+'''
+def change_user_cfg(usercfg_form):
+    try:
+        if usercfg_form:
+            user = User(usercfg_form.username.data)
+            user.email = usercfg_form.email.data
+            user.sex = usercfg_form.sex.data
+            user.save()
+            current_app.logger.info(u'用户%s修改信息成功!', user.username)
+            return True
+    except Exception, e:
+        current_app.logger.info(u'用户%s修改信息失败!', user.username)
+        current_app.logger.error(traceback.format_exc())
+        return False
+'''
+
+
+
 # if user not login
 class AnonymousUser(AnonymousUserMixin):
     def can(self, permissions):
@@ -150,6 +169,7 @@ class AnonymousUser(AnonymousUserMixin):
 
     def is_administer(self):
         return False
+
 
 login_manager.anonymous_user = AnonymousUser
 

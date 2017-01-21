@@ -1,12 +1,13 @@
 # coding=utf8
 from . import main
 from datetime import datetime
-from flask import render_template, url_for, redirect, request, flash, current_app, session
+from flask import render_template, url_for, redirect, request, flash, current_app, session, abort
 from flask.ext.login import login_user, login_required, current_user, logout_user
 from .forms import LoginForm, RegisterForm, UserConfigForm
 from apps.models import User, SpiderData
 from apps.views.decorators import admin_required, permission_required # 自定义修饰器
 from apps.models.Role import Permission
+from apps.models import db
 
 
 
@@ -91,10 +92,44 @@ def register():
 @login_required
 def user_config():
     form = UserConfigForm(csrf_enabled=False)
-    if current_user.is_authenticated and session.get('logged_in') is True:
-        return render_template('user_config.html', title=u'个人信息', username=session.get('username'), form=form, authenticated=True)
-    else: # 是否通过验证
-        return current_app.login_manager.unauthorized()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.sex = form.sex.data
+        db.session.add(current_user)
+        return render_template('user.html', authenticated=True)
+    form.username.data = current_user.username
+    form.sex.data = current_user.sex
+    if current_user.email is None:
+        form.email.data = None
+    else:
+        form.email.data = current_user.email
+
+    return render_template('user_config.html', title=u'个人信息', form=form, authenticated=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@main.route('/user/<username>')
+def user(username):
+    user = User.get_by_username(username)
+    if user is None:
+        abort(404)
+    return render_template('user.html')
+
 
 
 
