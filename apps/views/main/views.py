@@ -3,10 +3,10 @@ from . import main
 from datetime import datetime
 from flask import render_template, url_for, redirect, request, flash, current_app, session, abort
 from flask.ext.login import login_user, login_required, current_user, logout_user
-from .forms import LoginForm, RegisterForm, UserConfigForm
+from .forms import LoginForm, RegisterForm, UserConfigForm, EditProfileAdminForm
 from apps.models import User, SpiderData
 from apps.views.decorators import admin_required, permission_required # 自定义修饰器
-from apps.models.Role import Permission
+from apps.models.Role import Permission, Role
 from apps.models import db
 
 
@@ -113,17 +113,7 @@ def user_config():
 
 
 
-
-
-
-
-
-
-
-
-
-
-@main.route('/user/<username>')
+@main.route('/user/<username>', methods=['GET'])
 def user(username):
     user = User.get_by_username(username)
     if user is None:
@@ -147,6 +137,33 @@ def view():
 @admin_required
 def admin_config():
     return '<h1>Hello admin!</h1>'
+
+
+
+@main.route('/admin/edit_user/<int:id>', methods=['POST', 'GET'])
+@login_required
+@admin_required
+def edit_user(id):
+    user = User.User.query.get_or_404(id)
+    form = EditProfileAdminForm(user, csrf_enabled=False)
+    if form.validate_on_submit():
+        if form.validate_username(form.username):
+            user.username = form.username.data
+        elif form.validate_email(form.email):
+            if form.email.data is None:
+                user.email = None
+            else:
+                user.email = form.email.data
+        user.sex = form.sex.data
+        user.role_id = form.role.data
+        db.session.add(user)
+        flash(u'用户信息修改成功!')
+        return render_template('edit_user.html', form=form, authenticated=True)
+    form.username.data = user.username
+    form.email.data = user.email
+    form.sex.data = user.sex
+    form.role.data = user.role_id
+    return render_template('edit_user.html',form=form, user=user,  authenticated=True)
 
 
 
