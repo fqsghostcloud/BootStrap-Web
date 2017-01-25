@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% from "macro/field_render.html" import field_render %}
-{% from "macro/button_render.html" import button_render %}
 
 
 {% block head %}
@@ -13,7 +11,7 @@
             <div class="panel panel-info" style="margin: 30px 90px 0px 90px; ">
                 <div class="panel-heading">
                     <h2 class="panel-title" style="font-size: 22px;">设置</h2>
-                    <p class="help-block" style="margin-bottom: 0px;">修改您的基本信息</p>
+                    <p class="help-block" style="margin-bottom: 0px;">修改管理员基本信息</p>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-12">
@@ -22,20 +20,14 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8">
-                                <form role="form" class="form-horizontal form-panel" method="post">
-                                    {{ field_render(form.username, username) }}
-                                    {{ field_render(form.email, email) }}
-                                    <div class="form-group">
-                                        {{ form.sex.label(class="control-label col-md-2") }}
-                                        <div class="radio-inline col-sm-3">
-                                            {{ form.sex }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ button_render(form.submit) }}
-                                    </div>
-                                </form>
+                                <div class="page-header">
+                                    {% if current_user.is_authenticated and current_user.is_administer%}
+                                        <h1>{{ current_user.username }}</h1>
+                                        <p>{{ current_user.sex }}</p>
+                                        <p>{{ current_user.email }}</p>
+                                        <p>{{ moment(current_user.member_since).format('L') }}</p>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 

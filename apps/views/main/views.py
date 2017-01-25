@@ -29,45 +29,10 @@ def before_app_request():
 
 
 @main.route('/')
-@main.route('/index', methods='GET')
+@main.route('/index', methods=['POST', 'GET'])
 def index():
-    if current_user.is_authenticated and session.get('logged_in') is True:
-        authenticated = True
-    else:
-        session['logged_in'] = False
-        authenticated = False
     movie_data = SpiderData.get_moviedata()
-    # return render_template('index.html', list_data=movie_data, current_time=datetime.utcnow(), authenticated=authenticated)
-    return render_template('index.html', list_data=None, current_time=datetime.utcnow(), authenticated=authenticated)
-
-
-@main.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm(csrf_enabled=False)
-    if request.method == 'POST' and form.validate_on_submit():
-        user = User.get_by_username(form.username.data)
-        password = user.verify_password(form.password.data)
-        if user is None:
-            flash(u'该用户名不存在!')
-        elif password is not True:
-            flash(u'您的密码错误!')
-        else:
-            login_user(user, remember=form.remember_me.data)
-            session['username'] = request.form['username']
-            session['logged_in'] = True
-            flash(u'您登录成功!')
-            return redirect(url_for('main.user_config'))
-    return render_template('login.html', form=form, title=u'欢迎登录')
-
-
-@main.route('/logout',methods=['GET'])
-@login_required
-def logout():
-    session.pop('username', None)
-    session['logged_in'] = False
-    logout_user()
-    flash(u'您已经注销!')
-    return redirect(url_for('main.index'))
+    return render_template('index.html', list_data=None, current_time=datetime.utcnow(),)
 
 
 
@@ -88,27 +53,37 @@ def register():
 
 
 
-@main.route('/user_config', methods=['GET', 'POST'])
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm(csrf_enabled=False)
+    if request.method == 'POST' and form.validate_on_submit():
+        user = User.get_by_username(form.username.data)
+        password = user.verify_password(form.password.data)
+
+        if user is None:
+            flash(u'该用户名不存在!')
+        elif password is not True:
+            flash(u'您的密码错误!')
+        else:
+            login_user(user, remember=form.remember_me.data)
+            if current_user.is_administer():
+                flash(u'欢迎您 管理员!')
+                return redirect(url_for('main.admin'))
+            else:
+                flash(u'您登录成功!')
+                return redirect(url_for('main.user', username = current_user.username))
+    return render_template('login.html', form=form, title=u'欢迎登录')
+
+
+
+@main.route('/logout',methods=['GET'])
 @login_required
-def user_config():
-    form = UserConfigForm(csrf_enabled=False)
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        current_user.sex = form.sex.data
-        db.session.add(current_user)
-        return render_template('user.html', authenticated=True)
-    form.username.data = current_user.username
-    form.sex.data = current_user.sex
-    if current_user.email is None:
-        form.email.data = None
-    else:
-        form.email.data = current_user.email
-
-    return render_template('user_config.html', title=u'个人信息', form=form, authenticated=True)
-
-
-
+def logout():
+    session.pop('username', None)
+    session['logged_in'] = False
+    logout_user()
+    flash(u'您已经注销!')
+    return redirect(url_for('main.index'))
 
 
 
@@ -118,25 +93,49 @@ def user(username):
     user = User.get_by_username(username)
     if user is None:
         abort(404)
-    return render_template('user.html')
+    return render_template('user.html', user=user)
+
+
+
+@main.route('/user/user_config/<username>', methods=['GET', 'POST'])
+@login_required
+def user_config(username):
+    form = UserConfigForm(csrf_enabled=False)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.sex = form.sex.data
+        db.session.add(current_user)
+        flash(u'修改成功!')
+        return redirect(url_for('main.user', username=current_user.username))
+    form.username.data = current_user.username
+    form.sex.data = current_user.sex
+    if current_user.email is None:
+        form.email.data = None
+    else:
+        form.email.data = current_user.email
+
+    return render_template('user_config.html', title=u'个人信息', form=form)
+
 
 
 
 
 @main.route('/view')
 def view():
-    if current_user.is_authenticated and session.get('logged_in') is True:
-        authenticated = True
-    else:
-        authenticated = False
-    return render_template('view.html', authenticated=authenticated)
+    return render_template('view.html')
+
+
 
 
 @main.route('/admin')
 @login_required
 @admin_required
-def admin_config():
-    return '<h1>Hello admin!</h1>'
+def admin():
+    return render_template('admin.html')
+
+
+
 
 
 
@@ -163,7 +162,7 @@ def edit_user(id):
     form.email.data = user.email
     form.sex.data = user.sex
     form.role.data = user.role_id
-    return render_template('edit_user.html',form=form, user=user,  authenticated=True)
+    return render_template('edit_user.html',form=form, user=user)
 
 
 

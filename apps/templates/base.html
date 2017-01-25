@@ -39,18 +39,36 @@
 
                     {% block nav_bar %}
                         <ul class="nav navbar-nav navbar-right">
-                            {% if authenticated %}
-                                <li>
-                                    <a href="{{ url_for('main.user_config') }}" style="padding-top: 4px;padding-bottom: 4px;">
-                                        <img src="../static/images/user.jpg" alt="用户头像" class="img-circle nav-img">
-                                        <span style="padding-top: 15px;padding-bottom: 15px;">个人中心</span>
-                                    </a>
+                            {% if current_user.is_authenticated %}
 
-                                </li>
-                                <li>
-                                    <a id="regform" href="{{ url_for('main.logout') }}" role="button" class="btn" data-toggle="modal">注销</a>
 
-                                </li>
+                                {% if current_user.is_administer() %}
+                                    <li>
+                                        <a href="{{ url_for('main.admin') }}" style="padding-top: 4px;padding-bottom: 4px;">
+                                            <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-circle nav-img">
+                                            <span style="padding-top: 15px;padding-bottom: 15px;">管理员</span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a id="regform" href="{{ url_for('main.logout') }}" role="button" class="btn" data-toggle="modal">注销</a>
+
+                                    </li>
+
+                                {% else %}
+                                    <li>
+                                        <a href="{{ url_for('main.user_config',username=current_user.username) }}" style="padding-top: 4px;padding-bottom: 4px;">
+                                            <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-circle nav-img">
+                                            <span style="padding-top: 15px;padding-bottom: 15px;">个人中心</span>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a id="regform" href="{{ url_for('main.logout') }}" role="button" class="btn" data-toggle="modal">注销</a>
+
+                                    </li>
+                                {% endif %}
+
                             {% else %}
                                 <li>
                                     <a id="logfrom" href="{{ url_for('main.login') }}" role="button" class="btn" data-toggle="modal">登录</a>
@@ -61,11 +79,6 @@
 
                                 </li>
                             {% endif %}
-
-
-
-
-
 
                         </ul>
                     {% endblock nav_bar %}
