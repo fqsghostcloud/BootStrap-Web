@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-
+{% from "macro/field_render.html" import field_render %}
+{% from "macro/button_render.html" import button_render %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/css/mycss.css') }}">
@@ -22,10 +23,15 @@
                             <div class="col-md-8">
                                 <div class="page-header">
                                     {% if current_user.is_authenticated and current_user.is_administer%}
-                                        <h1>{{ current_user.username }}</h1>
-                                        <p>{{ current_user.sex }}</p>
-                                        <p>{{ current_user.email }}</p>
-                                        <p>{{ moment(current_user.member_since).format('L') }}</p>
+                                        <p>用户名: <strong>{{ current_user.username }}</strong></p>
+                                        <p>性别: <strong>{{ current_user.sex }}</strong></p>
+                                        <p>邮箱: <strong>{{ current_user.email }}</strong></p>
+                                        <p>注册时间: <strong>{{ moment(current_user.member_since).format('L') }}</strong></p>
+                                        <form action="{{ url_for('main.admin') }}" class="form-horizontal form-panel" role="form" method="post">
+                                            {{ form.hidden_tag() }}
+                                            {{ field_render(form.userid, id=userid) }}
+                                            {{ button_render(form.submit) }}
+                                        </form>
                                     {% endif %}
                                 </div>
                             </div>

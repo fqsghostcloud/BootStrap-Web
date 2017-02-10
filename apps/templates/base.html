@@ -57,7 +57,7 @@
 
                                 {% else %}
                                     <li>
-                                        <a href="{{ url_for('main.user_config',username=current_user.username) }}" style="padding-top: 4px;padding-bottom: 4px;">
+                                        <a href="{{ url_for('main.user',username=current_user.username) }}" style="padding-top: 4px;padding-bottom: 4px;">
                                             <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-circle nav-img">
                                             <span style="padding-top: 15px;padding-bottom: 15px;">个人中心</span>
                                         </a>

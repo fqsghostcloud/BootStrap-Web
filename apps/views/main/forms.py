@@ -54,6 +54,11 @@ class EditProfileAdminForm(Form):
             return True
 
 
+class TurnToUserId(Form):
+    userid = StringField(u'用户ID:')
+    submit = SubmitField(u'编辑用户')
+
+
 
 
 

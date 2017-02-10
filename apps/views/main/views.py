@@ -3,7 +3,7 @@ from . import main
 from datetime import datetime
 from flask import render_template, url_for, redirect, request, flash, current_app, session, abort
 from flask.ext.login import login_user, login_required, current_user, logout_user
-from .forms import LoginForm, RegisterForm, UserConfigForm, EditProfileAdminForm
+from .forms import LoginForm, RegisterForm, UserConfigForm, EditProfileAdminForm, TurnToUserId
 from apps.models import User, SpiderData
 from apps.views.decorators import admin_required, permission_required # 自定义修饰器
 from apps.models.Role import Permission, Role
@@ -128,11 +128,15 @@ def view():
 
 
 
-@main.route('/admin')
+@main.route('/admin', methods=['POST', 'GET'])
 @login_required
 @admin_required
 def admin():
-    return render_template('admin.html')
+    form = TurnToUserId(csrf_enabled=False)
+    if form.validate_on_submit():
+        userid = form.userid.data
+        return redirect(url_for('main.edit_user', id=userid))
+    return render_template('admin.html', form=form)
 
 
 
