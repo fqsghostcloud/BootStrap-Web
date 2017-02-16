@@ -1,7 +1,7 @@
 # coding=utf8
 from flask import Flask
 from apps.config import databaseconfig
-from apps.models import User, Role
+from apps.models import User, Role, Comment
 from apps.models.Role import Permission
 from apps.models import db
 
@@ -26,11 +26,14 @@ if __name__ == "__main__":
 
         user = User.User(u'admin')
         user.password = 'admin'
-        user.id = '1'
+        user.user_id = '52695269'
         user.role_id = Role.Role.query.filter(Role.Role.permissions == 0xff).first().id
         #user.confirmed = True
         user.save()
         print 'init db success!'
+
+
+
         '''
         User.User.__table__.create(db.session.bind, checkfirst=True)
         print 'succsess!'

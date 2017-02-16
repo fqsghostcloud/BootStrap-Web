@@ -4,7 +4,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from apps import create_app
 from apps.models import db
 from apps.models.User import login_manager
-from apps.models import User, Role
+from apps.models import User, Role, Comment
 
 
 

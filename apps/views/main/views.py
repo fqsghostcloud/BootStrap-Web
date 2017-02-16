@@ -3,8 +3,8 @@ from . import main
 from datetime import datetime
 from flask import render_template, url_for, redirect, request, flash, current_app, session, abort
 from flask.ext.login import login_user, login_required, current_user, logout_user
-from .forms import LoginForm, RegisterForm, UserConfigForm, EditProfileAdminForm, TurnToUserId
-from apps.models import User, SpiderData
+from .forms import LoginForm, RegisterForm, UserConfigForm, EditProfileAdminForm, TurnToUserId, CommentForm
+from apps.models import User, SpiderData, Comment
 from apps.views.decorators import admin_required, permission_required # 自定义修饰器
 from apps.models.Role import Permission, Role
 from apps.models import db
@@ -121,9 +121,16 @@ def user_config(username):
 
 
 
-@main.route('/view')
+@main.route('/view', methods=['POST', 'GET'])
 def view():
-    return render_template('view.html')
+    form = CommentForm(csrf_enabled=False)
+    if current_user.can(Permission.COMMENT) and form.validate_on_submit():
+        comment = Comment.Comment(form.body.data)
+        comment.author_id = current_user.id
+        comment.save()
+        return redirect(url_for('main.view'))
+    comments = Comment.get_comments_by_timestamp(Comment.Comment.timestamp.desc())
+    return render_template('view.html', form=form, comments=comments)
 
 
 

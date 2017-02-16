@@ -251,3 +251,10 @@
 
 }
 
+
+.post-img {
+    width: 55px;
+    height: auto;
+    overflow: hidden;
+
+}

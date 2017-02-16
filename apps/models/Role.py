@@ -44,7 +44,8 @@ class Role(db.Model):
         db.session.commit()
 
 
-
+def get_role_name(name):
+    return Role.query.order_by(name).all()
 
 
 

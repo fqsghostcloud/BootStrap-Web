@@ -8,12 +8,19 @@ from werkzeug.security import generate_password_hash, check_password_hash # gene
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from .Role import Role, Permission
 
+
 login_manager = LoginManager()
+
+Gender = [
+    u'男',
+    u'女'
+]
 
 # Flask-Login 默认提供UserMixin类，实现了is_anthenticated(), is_active(), is_anonymous()等方法
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
-    id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(50), nullable=False, unique=True, index=True)
     username = db.Column(db.Unicode(128), nullable=False, unique=True, index=True)
     password_hash = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(50))
@@ -21,6 +28,7 @@ class User(db.Model, UserMixin):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     member_since = db.Column(db.DateTime, default=datetime.utcnow)
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    comments = db.relationship('Comment', backref='author', lazy='dynamic')
     # confirmed = db.Column(db.Boolean, default=False) # confirm the account is active
 
     def __init__(self, username):
@@ -106,6 +114,9 @@ def get_by_id(id):
 def get_by_username(username):
     return User.query.filter(User.username == username).first()
 
+def get_by_email(email):
+    return User.query.filter(User.email == email).first()
+
 def get_count():
     return User.query.count()
 
@@ -122,7 +133,7 @@ def create_user(user_form):
         user.password = user_form.password.data
         user.email = user_form.email.data
         user.sex = user_form.sex.data
-        user.id = create_user_id()
+        user.user_id = create_user_id()
         user.role_id = Role.query.filter(Role.default == True).first().id # set role to user
         user.save()
         current_app.logger.info(u'添加 %s 用户成功', user.username)

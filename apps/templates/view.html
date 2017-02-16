@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from "macro/field_render.html" import field_render %}
+{% from "macro/button_render.html" import button_render %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='mystyle/css/mycss.css') }}">
@@ -102,7 +104,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-3">
                 <div class="list-group">
                     <p class="list-group-item list-head">热门电影</p>
@@ -135,87 +136,129 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
-            <div style="border: 1px solid #C5DDF6;background-color: #EAF5FF">
-                <h4 style="padding-left: 10px; border-left: 8px solid #00A6DE">xxx电影截图</h4>
-                <img style="width: 1080px;" src="http://p1.bpimg.com/2251/218e73a20a04606bs.png" alt="xxx">
-                <img style="width: 1080px;" src="http://p1.bpimg.com/2251/218e73a20a04606bs.png" alt="xxx">
-                <img style="width: 1080px;" src="http://p1.bpimg.com/2251/218e73a20a04606bs.png" alt="xxx">
+            <div class="col-md-12">
+                <div style="border: 1px solid #C5DDF6;background-color: #EAF5FF">
+                    <h4 style="padding-left: 10px; border-left: 8px solid #00A6DE">xxx电影截图</h4>
+                    <img style="width: 1080px;" src="http://p1.bpimg.com/2251/218e73a20a04606bs.png" alt="xxx">
+                    <img style="width: 1080px;" src="http://p1.bpimg.com/2251/218e73a20a04606bs.png" alt="xxx">
+                    <img style="width: 1080px;" src="http://p1.bpimg.com/2251/218e73a20a04606bs.png" alt="xxx">
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default " style="margin-top: 15px">
+                    <div class="panel-heading" style="line-height:18px;">
+                        <strong>xxx在线观看</strong>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="#" style="margin-right: 30px;" target="_blank" title="xxx">极速播放</a>
+                            <a href="#" style="margin-right: 30px" target="_blank" title="xxx">高清播放</a>
+                        </li>
+                    </ul>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;padding-right: 0px;" align="center" width="100px">
+                                <span title="百度云网盘" class="magnet-icon">百度云网盘</span>
+                            </td>
+                            <td class="text-break">
+                                <div style="overflow: hidden; width: 100%; height: 20px;">
+                                    <a href="#" target="_blank" title="xxxxx">xxx百度网盘播放</a>
+                                </div>
+
+                            </td>
+                            <td style="vertical-align: middle; padding-right: 0px" width="70px;" >      </td>
+                            <td style="vertical-align: middle; padding-right: 0px" width="90px;">       </td>
+                        </tr>
+
+                        <tr>
+                            <td style="vertical-align: middle; padding-right: 0px;" align="center" width="100px">
+                                <span class="magnet-icon">磁力链接1</span>
+                            </td>
+                            <td class="text-break">
+                                <div style="width: 100%; height: 20px; overflow: hidden;">
+                                    <a href="#" target="_blank">种子链接</a>
+                                </div>
+                            </td>
+                            <td style="vertical-align: middle; padding-right: 0px" width="70px;" >      </td>
+                            <td style="vertical-align: middle; padding-right: 0px" width="90px;">       </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle; padding-right: 0px;" align="center" width="100px">
+                                <span class="magnet-icon">磁力链接2</span>
+                            </td>
+                            <td class="text-break">
+                                <div style="width: 100%;height: 20px;overflow: hidden">
+                                    <a href="#" target="_blank">种子链接</a>
+                                </div>
+
+                            </td>
+                            <td style="vertical-align: middle; padding-right: 0px" width="70px;" >      </td>
+                            <td style="vertical-align: middle; padding-right: 0px" width="90px;">       </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="panel-footer resource-help">
+                        <strong>xxx - 百度云网盘资源下载帮助：</strong><br>
+                        1、想要在线观看的，请保存到百度云盘中观看，没有百度云网盘链接或者百度云链接失效的请用百度网盘离线下载后观看<br>
+                        2、如需下载电影，请先安装迅雷（旋风），然后右键资源链接，选择迅雷（旋风）下载。<br>
+                        3、资源名称中含HD为高清，BD为蓝光 ，Mandarin是普通话，Cantonese是粤语，两者都有为双音轨。<br>
+                        4、如果百度云网盘失效请留言或加QQ群反映小站会第一时间补充百度云盘链接。
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h4 style="padding-left: 10px; border-left: 8px solid #00A6DE">电影评论</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="post-img">
+
+                                    <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-responsive img-rounded">
+
+                                </td>
+                                <td>
+                                    <span style="color: #00a7d0"><p>小米</p></span>
+                                    <p style="margin-top: 10px;">还不错喔，来看看!1、想要在线观看的，请保存到百度云盘中观看，没有百度云网盘链接或者百度云链接失效的请用百度网盘离线下载后观看
+                                        2、如需下载电影，请先安装迅雷（旋风），然后右键资源链接，选择迅雷（旋风）下载。
+                                        3、资源名称中含HD为高清，BD为蓝光 ，Mandarin是普通话，Cantonese是粤语，两者都有为双音轨。
+                                        4、如果百度云网盘失效请留言或加QQ群反映小站会第一时间补充百度云盘链接。</p>
+                                    <span style="color: #1b6d85"><p style="margin-bottom: 1px">2017年2月16日</p></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="post-img">
+
+                                    <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-responsive img-rounded">
+
+                                </td>
+                                <td>
+                                    <span style="color: #00a7d0"><p>小米</p></span>
+                                    <p style="margin-top: 10px;">还不错喔，来看看!1、想要在线观看的，请保存到百度云盘中观看，没有百度云网盘链接或者百度云链接失效的请用百度网盘离线下载后观看
+                                        2、如需下载电影，请先安装迅雷（旋风），然后右键资源链接，选择迅雷（旋风）下载。
+                                        3、资源名称中含HD为高清，BD为蓝光 ，Mandarin是普通话，Cantonese是粤语，两者都有为双音轨。
+                                        4、如果百度云网盘失效请留言或加QQ群反映小站会第一时间补充百度云盘链接。</p>
+                                    <span style="color: #1b6d85"><p style="margin-bottom: 1px">2017年2月16日</p></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom: 20px">
+                        <form action="{{ url_for('main.view') }}" class="form-horizontal form-panel">
+                            {{ button_render(form.submit)}}
+                        </form>
+                    </div>
+                </div>
 
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="panel panel-default " style="margin-top: 15px">
-                <div class="panel-heading" style="line-height:18px;">
-                    <strong>xxx在线观看</strong>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="#" style="margin-right: 30px;" target="_blank" title="xxx">极速播放</a>
-                        <a href="#" style="margin-right: 30px" target="_blank" title="xxx">高清播放</a>
-                    </li>
-                </ul>
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <td style="vertical-align: middle;padding-right: 0px;" align="center" width="100px">
-                            <span title="百度云网盘" class="magnet-icon">百度云网盘</span>
-                        </td>
-                        <td class="text-break">
-                            <div style="overflow: hidden; width: 100%; height: 20px;">
-                                <a href="#" target="_blank" title="xxxxx">xxx百度网盘播放</a>
-                            </div>
-
-                        </td>
-                        <td style="vertical-align: middle; padding-right: 0px" width="70px;" >      </td>
-                        <td style="vertical-align: middle; padding-right: 0px" width="90px;">       </td>
-                    </tr>
-
-                    <tr>
-                        <td style="vertical-align: middle; padding-right: 0px;" align="center" width="100px">
-                            <span class="magnet-icon">磁力链接1</span>
-                        </td>
-                        <td class="text-break">
-                            <div style="width: 100%; height: 20px; overflow: hidden;">
-                                <a href="#" target="_blank">种子链接</a>
-                            </div>
-                        </td>
-                        <td style="vertical-align: middle; padding-right: 0px" width="70px;" >      </td>
-                        <td style="vertical-align: middle; padding-right: 0px" width="90px;">       </td>
-                    </tr>
-                    <tr>
-                        <td style="vertical-align: middle; padding-right: 0px;" align="center" width="100px">
-                            <span class="magnet-icon">磁力链接2</span>
-                        </td>
-                        <td class="text-break">
-                            <div style="width: 100%;height: 20px;overflow: hidden">
-                                <a href="#" target="_blank">种子链接</a>
-                            </div>
-
-                        </td>
-                        <td style="vertical-align: middle; padding-right: 0px" width="70px;" >      </td>
-                        <td style="vertical-align: middle; padding-right: 0px" width="90px;">       </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-                <div class="panel-footer resource-help">
-                    <strong>xxx - 百度云网盘资源下载帮助：</strong><br>
-                    1、想要在线观看的，请保存到百度云盘中观看，没有百度云网盘链接或者百度云链接失效的请用百度网盘离线下载后观看<br>
-                    2、如需下载电影，请先安装迅雷（旋风），然后右键资源链接，选择迅雷（旋风）下载。<br>
-                    3、资源名称中含HD为高清，BD为蓝光 ，Mandarin是普通话，Cantonese是粤语，两者都有为双音轨。<br>
-                    4、如果百度云网盘失效请留言或加QQ群反映小站会第一时间补充百度云盘链接。
-                </div>
-            </div>
 
 
-
-
-        </div>
-        <div class="col-md-12">
-            <h4 style="padding-left: 10px; border-left: 8px solid #00A6DE">电影评论</h4>
-        </div>
 
     </div>
 {% endblock %}
