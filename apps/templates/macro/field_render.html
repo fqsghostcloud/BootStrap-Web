@@ -23,3 +23,27 @@
     {% endif %}
 {% endmacro %}
 
+{% macro textarea_file_render(field) %}
+    {% if field %}
+        <div class="form-group">
+            {% if field.errors %}
+                {{ field.label(class="col-md-2 control-label") }}
+
+                <div class="col-md-8">
+                    {{ field(class="form-control", **kwargs)|safe }}
+                    {% for error in field.errors %}
+                        <span class="help-block" style="color: red;">
+                            *{{ error }}<br/>
+                        </span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ field.label(class="col-md-2 control-label") }}
+                <div class="col-md-8">
+                    {{ field(class="form-control",rows="4", **kwargs)|safe }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}
+

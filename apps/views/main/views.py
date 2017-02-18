@@ -121,16 +121,17 @@ def user_config(username):
 
 
 
-@main.route('/view', methods=['POST', 'GET'])
+@main.route('/view', methods=['GET', 'POST'])
 def view():
     form = CommentForm(csrf_enabled=False)
     if current_user.can(Permission.COMMENT) and form.validate_on_submit():
         comment = Comment.Comment(form.body.data)
+        comment.timestamp = datetime.now()
         comment.author_id = current_user.id
         comment.save()
         return redirect(url_for('main.view'))
     comments = Comment.get_comments_by_timestamp(Comment.Comment.timestamp.desc())
-    return render_template('view.html', form=form, comments=comments)
+    return render_template('view.html', form=form, comments=comments, User=User)
 
 
 

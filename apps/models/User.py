@@ -119,6 +119,9 @@ def get_by_email(email):
 
 def get_count():
     return User.query.count()
+def get_username_by_id(id):
+    return User.query.filter(User.id == id).first().username
+
 
 
 

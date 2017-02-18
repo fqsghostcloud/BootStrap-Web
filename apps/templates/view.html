@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macro/field_render.html" import field_render %}
+{% from "macro/field_render.html" import textarea_file_render %}
 {% from "macro/button_render.html" import button_render %}
 
 {% block head %}
@@ -215,43 +215,36 @@
                     <div class="col-md-12">
                         <table class="table">
                             <tbody>
+                            <!--电影评论显示 -->
+                            {% if comments %}
+                                {% for comment in comments %}
+                                    <tr>
+                                        <td class="post-img">
+
+                                            <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-responsive img-rounded">
+
+                                        </td>
+                                        <td>
+                                            <span style="color: #00a7d0"><p>{{ User.get_username_by_id(comment.author_id) }}</p></span>
+                                            <p style="margin-top: 10px;">{{ comment.body }}</p>
+                                            <span style="color: #1b6d85"><p style="margin-bottom: 1px">{{ comment.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p></span>
+                                        </td>
+                                    </tr>
+                                {% endfor%}
+                            {% endif %}
+
                             <tr>
-                                <td class="post-img">
-
-                                    <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-responsive img-rounded">
-
-                                </td>
+                                <td></td>
                                 <td>
-                                    <span style="color: #00a7d0"><p>小米</p></span>
-                                    <p style="margin-top: 10px;">还不错喔，来看看!1、想要在线观看的，请保存到百度云盘中观看，没有百度云网盘链接或者百度云链接失效的请用百度网盘离线下载后观看
-                                        2、如需下载电影，请先安装迅雷（旋风），然后右键资源链接，选择迅雷（旋风）下载。
-                                        3、资源名称中含HD为高清，BD为蓝光 ，Mandarin是普通话，Cantonese是粤语，两者都有为双音轨。
-                                        4、如果百度云网盘失效请留言或加QQ群反映小站会第一时间补充百度云盘链接。</p>
-                                    <span style="color: #1b6d85"><p style="margin-bottom: 1px">2017年2月16日</p></span>
+                                    <form action="{{ url_for('main.view') }}"class="form" role="form" method="post">
+                                        {{ textarea_file_render(form.body) }}
+                                        {{ button_render(form.submit)}}
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="post-img">
 
-                                    <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-responsive img-rounded">
-
-                                </td>
-                                <td>
-                                    <span style="color: #00a7d0"><p>小米</p></span>
-                                    <p style="margin-top: 10px;">还不错喔，来看看!1、想要在线观看的，请保存到百度云盘中观看，没有百度云网盘链接或者百度云链接失效的请用百度网盘离线下载后观看
-                                        2、如需下载电影，请先安装迅雷（旋风），然后右键资源链接，选择迅雷（旋风）下载。
-                                        3、资源名称中含HD为高清，BD为蓝光 ，Mandarin是普通话，Cantonese是粤语，两者都有为双音轨。
-                                        4、如果百度云网盘失效请留言或加QQ群反映小站会第一时间补充百度云盘链接。</p>
-                                    <span style="color: #1b6d85"><p style="margin-bottom: 1px">2017年2月16日</p></span>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="col-md-12" style="margin-bottom: 20px">
-                        <form action="{{ url_for('main.view') }}" class="form-horizontal form-panel">
-                            {{ button_render(form.submit)}}
-                        </form>
                     </div>
                 </div>
 
