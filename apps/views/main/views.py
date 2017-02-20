@@ -129,9 +129,21 @@ def view():
         comment.timestamp = datetime.now()
         comment.author_id = current_user.id
         comment.save()
+        flash(u'评论成功!')
         return redirect(url_for('main.view'))
     comments = Comment.get_comments_by_timestamp(Comment.Comment.timestamp.desc())
-    return render_template('view.html', form=form, comments=comments, User=User)
+    return render_template('view.html', form=form, comments=comments, User=User, Permission=Permission)
+
+
+@main.route('/view/delete_comment/<int:id>', methods=['POST','GET'])
+@login_required
+def delete_comment(id):
+    del_comment = Comment.Comment.query.filter(Comment.Comment.id == id).first()
+    del_comment.delete()
+    flash(u'删除成功!')
+    return redirect(url_for('main.view'))
+
+
 
 
 

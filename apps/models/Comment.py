@@ -12,9 +12,14 @@ class Comment(db.Model):
     def __init__(self, body):
         self.body = body
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
     def save(self):
         db.session.add(self)
         db.session.commit()
 
 def get_comments_by_timestamp(timestamp):
     return Comment.query.order_by(timestamp).all()
+

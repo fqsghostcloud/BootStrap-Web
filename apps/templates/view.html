@@ -222,6 +222,11 @@
                                         <td class="post-img">
 
                                             <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="用户头像" class="img-responsive img-rounded">
+                                            {% if current_user.is_authenticated and current_user.id == comment.author_id%}
+                                                <span style="color: #1b6d85"><a href="{{ url_for('main.delete_comment',id=comment.id) }}"><p style="margin-top: 12px;margin-bottom: 0px;">删除</p></a></span>
+                                            {% elif current_user.can(Permission.ADMINISTER) or current_user.can(Permission.HELP_ADMIN)%}
+                                                <span style="color: #1b6d85"><a href="{{ url_for('main.delete_comment',id=comment.id) }}"><p style="margin-top: 12px;margin-bottom: 0px;">删除</p></a></span>
+                                            {% endif %}
 
                                         </td>
                                         <td>
